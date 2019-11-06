@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Testes</title>
+</h:head>
+
+<h:body>
+
+	<h:form>
+		<p:selectOneMenu value="#{testeController.estado}">
+		
+			<f:selectItems 
+				var="e"
+				itemValue="#{e}"
+				itemLabel="#{e.descricao}"
+				value="#{testeController.estados}" />
+				
+		</p:selectOneMenu>
+		
+		<p:selectOneRadio value="#{testeController.linguagem}">
+			<f:selectItem itemValue="1" itemLabel="Java" />
+			<f:selectItem itemValue="2" itemLabel="PHP" />
+			<f:selectItem itemValue="3" itemLabel="Java Script" />
+			<f:selectItem itemValue="4" itemLabel="Python" />
+			<f:selectItem itemValue="5" itemLabel="Go" />
+			<f:selectItem itemValue="6" itemLabel="C++" />
+			<f:selectItem itemValue="7" itemLabel="Pascal" />
+		</p:selectOneRadio>
+		
+		<p:selectBooleanCheckbox id="confirmacao" value="#{testeController.confirmado}" />
+		<p:outputLabel value="Aceita os termos que você nem leu?" for="confirmacao" />
+		
+		<p:selectManyCheckbox value="#{testeController.linguagens}">
+			<f:selectItem itemValue="1" itemLabel="Java" />
+			<f:selectItem itemValue="2" itemLabel="PHP" />
+			<f:selectItem itemValue="3" itemLabel="Java Script" />
+			<f:selectItem itemValue="4" itemLabel="Python" />
+			<f:selectItem itemValue="5" itemLabel="Go" />
+			<f:selectItem itemValue="6" itemLabel="C++" />
+			<f:selectItem itemValue="7" itemLabel="Pascal" />
+		</p:selectManyCheckbox>
+		
+		<p:commandButton value="Enviar" action="#{testeController.enviar}" />
+	</h:form>
+    
+</h:body>
+
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	
+		<h:form>
+		<p:menubar>
+		<p:submenu label="Cadastros" icon="fa fa-save">
+				<p:menuitem value="Fornecedor" outcome="fornecedor" icon="fa fa-industry"/>
+				<p:menuitem value="Funcionario" outcome="funcionario" icon="fa fa-users"/>
+			</p:submenu>
+			<p:menuitem value="Atendimento" outcome="atendimento" icon="fa fa-phone"/>
+			<p:menuitem value="Dashboard" outcome="dashboard" />
+			
+			<f:facet name="options">
+	           <p:commandButton type="button" value="Sair" icon="fa fa-home" />
+	       </f:facet>
+		</p:menubar>
+	</h:form>
+	
+</html>

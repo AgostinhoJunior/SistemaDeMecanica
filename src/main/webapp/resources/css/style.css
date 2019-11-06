@@ -1,0 +1,35 @@
+.align-center {
+	text-align: center;
+}
+
+.fornecedor-coluna-acoes {
+	width: 80px;
+}
+
+.fornecedor-coluna-nascimento {
+	width: 130px;
+}
+
+.tabela-exportacoes {
+	float:right;
+	padding-top: 2px;
+}
+
+.tabela-exportacoes a {
+	margin-right: 5px;	
+}
+
+.ui-filter-column .ui-column-customfilter .custom-filter {
+    width: 100%;
+    box-sizing: border-box;
+}
+ 
+.year-spinner input {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.ui-menuitem-icon{
+	text-align: center;
+	margin-right: 10px;
+}

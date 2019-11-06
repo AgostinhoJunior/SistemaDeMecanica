@@ -1,0 +1,97 @@
+* {
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+    padding: 50px;
+    margin: 20px 200px;
+    background-color: #f2f2f2;
+}
+
+input:not([type="submit"]):not([type="image"]), select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+input:hover, input:focus {
+    outline: none;
+    box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
+}
+
+.cadastrar, .limpar {
+    margin-right: 10px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.cadastrar {
+    background-color: #4caf50;
+}
+
+.limpar {
+    background-color: #00a6ff;
+}
+
+.cadastrar:hover {
+    background-color: #45a049;
+}
+
+.limpar:hover {
+    background-color: #0098f3;
+}
+
+.invalido {
+    border: 1px solid red;
+}
+
+hr {
+    margin: 30px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+table {
+    width: 100%;
+    text-align: left;
+    background-color: #fff;
+    border-collapse: collapse;
+}
+
+table th {
+    height: 50px;
+}
+
+th, td {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+td > input {
+	margin-right: 10px;
+}
+
+.colunaAcoes {
+	width: 115px;	
+}
+
+.errorForm {
+	color: red;
+}
+
+.mensagemInfo {
+	list-style: none;
+    margin-left: -40px;
+    padding-left: 10px;
+    background-color: #4caf50;
+    color: #fff;
+    line-height: 2;
+}
+
