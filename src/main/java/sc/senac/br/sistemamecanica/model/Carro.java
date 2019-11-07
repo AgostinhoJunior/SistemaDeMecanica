@@ -1,13 +1,23 @@
 package sc.senac.br.sistemamecanica.model;
 
-public class Carro {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "carro")
+public class Carro implements IBaseModel{
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
-	
+
 	private String marca;
-	
+
 	private String cor;
-	
+
 	private Long ano;
 
 	public Long getCodigo() {
@@ -41,6 +51,5 @@ public class Carro {
 	public void setAno(Long ano) {
 		this.ano = ano;
 	}
-	
-	
+
 }

@@ -2,6 +2,10 @@
 	text-align: center;
 }
 
+#titulo {
+	text-align: center;	
+}
+
 .fornecedor-coluna-acoes {
 	width: 80px;
 }

@@ -1,8 +1,17 @@
 package sc.senac.br.sistemamecanica.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-public class Servico {
+@Entity
+@Table(name = "servico")
+public class Servico implements IBaseModel{
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 	
 	private String descricao;
