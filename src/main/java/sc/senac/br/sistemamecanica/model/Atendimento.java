@@ -7,11 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "fornecedor")
+@Table(name = "atendimento")
 public class Atendimento implements IBaseModel{
 
 	@Id
@@ -21,7 +23,10 @@ public class Atendimento implements IBaseModel{
 	@OneToOne(cascade = CascadeType.REMOVE)
 	private Cliente cliente;
 	
-	private List<Servico> servico;
+	@OneToMany
+	private List<Servico> servicos;
+	
+	private Double valorTotal; 
 
 	public Long getCodigo() {
 		return codigo;
@@ -39,13 +44,20 @@ public class Atendimento implements IBaseModel{
 		this.cliente = cliente;
 	}
 
-	public List<Servico> getServico() {
-		return servico;
+	public List<Servico> getServicos() {
+		return servicos;
 	}
 
-	public void setServico(List<Servico> servico) {
-		this.servico = servico;
+	public void setServicos(List<Servico> servicos) {
+		this.servicos = servicos;
 	}
-	
+
+	public Double getValorTotal() {
+		return valorTotal;
+	}
+
+	public void setValorTotal(Double valorTotal) {
+		this.valorTotal = valorTotal;
+	}
 	
 }

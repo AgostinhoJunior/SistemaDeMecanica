@@ -39,20 +39,24 @@
 						value="#{cadastroFornecedorBean.fornecedor.pessoa.email}"
 						placeholder="Informe seu email" />
 
-					<p:outputLabel value="CPF " for="cpf" />
+					<p:outputLabel value="CPF/CNPJ " for="cpf" />
 					<p:inputText id="cpf" required="true"
 						requiredMessage="CPF deve ser preenchido"
 						value="#{cadastroFornecedorBean.fornecedor.pessoa.cpf}"
 						placeholder="Informe seu CPF" />
-
-					<p:outputLabel value="Nascimento: " for="nascimento" />
-					<p:calendar id="nascimento" widgetVar="calWidget" effect="fade"
-						navigator="true" pattern="dd/MM/yyyy" yearRange="c-100:c+0"
-						maxdate="calWidget.today()" required="true"
-						requiredMessage="Nascimento deve ser preenchido"
-						placeholder="dd/mm/aaaa"
-						value="#{cadastroFornecedorBean.fornecedor.pessoa.nascimento}">
-					</p:calendar>
+						
+					<p:outputLabel value="Razão Social " for="razaoSocial" />
+					<p:inputText id="razaoSocial" required="true"
+						requiredMessage="Razão social deve ser preenchido"
+						value="#{cadastroFornecedorBean.fornecedor.razaoSocial}"
+						placeholder="Informe a razão Social" />
+							
+					
+					<p:outputLabel value="Nome Fantasia " for="nomeFantasia" />
+					<p:inputText id="nomeFantasia" required="true"
+						requiredMessage="Nome fantasia deve ser preenchido"
+						value="#{cadastroFornecedorBean.fornecedor.nomeFantasia}"
+						placeholder="Informe o nome fantasia" />
 
 				</p:panelGrid>
 
@@ -117,15 +121,6 @@
 					<h:outputText value="#{f.pessoa.email}" />
 				</p:column>
 
-
-				<p:column headerText="Nascimento" sortBy="#{f.pessoa.nascimento}"
-					styleClass="align-center fornecedor-coluna-nascimento">
-
-					<h:outputText value="#{f.pessoa.nascimento}">
-						<f:convertDateTime pattern="dd/MM/yyyy"
-							timeZone="#{initParam.timezone}" />
-					</h:outputText>
-				</p:column>
 
 				<p:column exportable="false"
 					styleClass="align-center fornecedor-coluna-acoes">

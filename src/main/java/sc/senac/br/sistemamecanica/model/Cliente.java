@@ -19,6 +19,7 @@ public class Cliente implements IBaseModel{
 	@OneToOne(cascade = CascadeType.REMOVE)
 	private Pessoa pessoa;
 	
+	@OneToOne
 	private Carro carro;
 	
 	@OneToOne(cascade = CascadeType.REMOVE)

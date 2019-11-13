@@ -19,6 +19,11 @@ public class Fornecedor implements IBaseModel{
 	@OneToOne(cascade = CascadeType.REMOVE)
 	private Pessoa pessoa;
 
+	private String razaoSocial;
+	
+	private String nomeFantasia;
+	
+	
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -33,6 +38,23 @@ public class Fornecedor implements IBaseModel{
 
 	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
+	}
+
+	
+	public String getRazaoSocial() {
+		return razaoSocial;
+	}
+
+	public void setRazaoSocial(String razaoSocial) {
+		this.razaoSocial = razaoSocial;
+	}
+
+	public String getNomeFantasia() {
+		return nomeFantasia;
+	}
+
+	public void setNomeFantasia(String nomeFantasia) {
+		this.nomeFantasia = nomeFantasia;
 	}
 
 	@Override
