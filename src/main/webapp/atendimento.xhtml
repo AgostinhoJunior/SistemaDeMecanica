@@ -29,21 +29,27 @@
 					<p:outputLabel value="Nome: " for="nome" />
 					<p:inputText id="nome" required="true"
 						requiredMessage="Nome deve ser preenchido"
-						value="#{cadastroAtendimentoBean.cliente.pessoa.nome}"
+						value="#{cadastroAtendimentoBean.atendimento.cliente.pessoa.nome}"
 						placeholder="Informe seu nome" />
 
 
 					<p:outputLabel value="CPF " for="cpf" />
 					<p:inputText id="cpf" required="true"
 						requiredMessage="CPF deve ser preenchido"
-						value="#{cadastroAtendimentoBean.cliente.pessoa.cpf}"
+						value="#{cadastroAtendimentoBean.atendimento.cliente.pessoa.cpf}"
 						placeholder="Informe seu CPF" />
 
 					<p:outputLabel value="Telefone " for="telefone" />
 					<p:inputText id="telefone" required="true"
 						requiredMessage="Telefone deve ser preenchido"
-						value="#{cadastroAtendimentoBean.cliente.pessoa.telefone}"
+						value="#{cadastroAtendimentoBean.atendimento.cliente.pessoa.telefone}"
 						placeholder="Informe seu Telefone" />
+
+					<p:outputLabel value="Marca " for="marca" />
+					<p:inputText id="marca" required="true"
+						requiredMessage="A marca do carro deve ser preenchido"
+						value="#{cadastroAtendimentoBean.atendimento.cliente.carro.marca}"
+						placeholder="Informe a marca do carro" />
 
 
 				</p:panelGrid>
@@ -54,13 +60,15 @@
 		<h:form>
 			<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5"
 				columnClasses="label, value">
-				 <p:outputLabel for="campoAtributos" value="Atributos:"/>
-                    <p:selectManyMenu id="campoAtributos"  value="#{}">
-                        <f:attribute name="collectionType" value="java.util.ArrayList" />
-                        <f:selectItem noSelectionOption="true" itemLabel="Selecione serviços"/>
-                        <f:selectItems var="servicos" value="#{categoriaMB.atributos}" itemLabel="#{}"/>
-                    </p:selectManyMenu>
-				</h:panelGrid>
+				<p:outputLabel for="campoAtributos" value="Atributos:" />
+				<p:selectManyMenu id="campoAtributos" value="#{cadastroAtendimentoBean.atendimento.servicos}">
+					<f:attribute name="collectionType" value="java.util.ArrayList" />
+					<f:selectItem noSelectionOption="true"
+						itemLabel="Selecione serviços" />
+					<f:selectItems var="servicos" value="#{}"
+						itemLabel="#{}" />
+				</p:selectManyMenu>
+			</h:panelGrid>
 		</h:form>
 
 	</ui:define>

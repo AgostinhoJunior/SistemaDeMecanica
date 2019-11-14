@@ -14,6 +14,8 @@ public class Carro implements IBaseModel{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 
+	private String nomeCarro;
+	
 	private String marca;
 
 	private String cor;
@@ -50,6 +52,14 @@ public class Carro implements IBaseModel{
 
 	public void setAno(Long ano) {
 		this.ano = ano;
+	}
+
+	public String getNomeCarro() {
+		return nomeCarro;
+	}
+
+	public void setNomeCarro(String nomeCarro) {
+		this.nomeCarro = nomeCarro;
 	}
 
 }

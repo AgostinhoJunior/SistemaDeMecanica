@@ -6,6 +6,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import sc.senac.br.sistemamecanica.dao.IBaseDao;
+import sc.senac.br.sistemamecanica.model.Atendimento;
 import sc.senac.br.sistemamecanica.model.Cliente;
 import sc.senac.br.sistemamecanica.model.Servico;
 
@@ -18,6 +19,8 @@ public class CadastroAtendimentoBean implements Serializable{
 	
 	private IBaseDao<Servico> servicosDao;
 
+	private Atendimento atendimento;
+	
 	private Cliente cliente;
 
 	public Cliente getCliente() {
@@ -35,6 +38,13 @@ public class CadastroAtendimentoBean implements Serializable{
 	public void setServicosDao(IBaseDao<Servico> servicosDao) {
 		this.servicosDao = servicosDao;
 	}
-	
+
+	public Atendimento getAtendimento() {
+		return atendimento;
+	}
+
+	public void setAtendimento(Atendimento atendimento) {
+		this.atendimento = atendimento;
+	}
 	
 }
