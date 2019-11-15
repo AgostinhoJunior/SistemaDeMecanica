@@ -22,6 +22,8 @@
 			<div class="ui-fluid">
 
 
+				<p:spacer height="10" />
+
 				<p:panelGrid columns="2" layout="grid"
 					columnClasses="ui-g-4 ui-md-3 ui-lg-2, ui-g-8 ui-md-9 ui-lg-10"
 					styleClass="ui-panelgrid-blank">
@@ -43,7 +45,103 @@
 				</p:panelGrid>
 			</div>
 
+			<p:spacer height="10" />
+
+			<p:toolbar class="botoes">
+				<f:facet name="left">
+					<p:commandButton value="Salvar" icon="fa fa-save"
+						update="formServicos formDataTable"
+						action="#{cadastroServicoBean.salvar}" />
+
+					<p:commandButton value="Limpar" icon="fa fa-eraser" update="@form"
+						process="@this" action="#{cadastroServicoBean.limpar}" />
+				</f:facet>
+			</p:toolbar>
+
 		</h:form>
+
+		<p:spacer height="10" />
+
+		<h:form id="formDataTable">
+
+			<p:dataTable id="table" var="s" widgetVar="table" reflow="true"
+				paginator="true" rows="5" paginatorPosition="bottom"
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
+				rowsPerPageTemplate="5,10,15"
+				value="#{cadastroServicoBean.servicos}"
+				filteredValue="#{cadastroServicoBean.servicosFiltro}">
+
+				<f:facet name="{Exporters}">
+					<div class="tabela-exportacoes">
+						<h:commandLink>
+							<p:graphicImage library="imagens" name="excel.png" width="24" />
+							<p:dataExporter type="xls" target="table" fileName="servicos" />
+						</h:commandLink>
+
+						<h:commandLink>
+							<p:graphicImage library="imagens" name="pdf.png" width="24" />
+							<p:dataExporter type="pdf" target="table" fileName="servicos" />
+						</h:commandLink>
+
+						<h:commandLink>
+							<p:graphicImage library="imagens" name="csv.png" width="24" />
+							<p:dataExporter type="csv" target="table" fileName="servicos" />
+						</h:commandLink>
+
+						<h:commandLink>
+							<p:graphicImage library="imagens" name="xml.png" width="24" />
+							<p:dataExporter type="xml" target="table" fileName="servicos" />
+						</h:commandLink>
+					</div>
+				</f:facet>
+
+				<p:column headerText="Descricao" filterBy="#{s.servico.descricao}"
+					filterMatchMode="contains" sortBy="#{s.servico.descricao}">
+					<h:outputText value="#{s.servico.descricao}" />
+				</p:column>
+
+				<p:column headerText="Valor servico"
+					filterBy="#{s.servico.valorServico}" filterMatchMode="contains"
+					sortBy="#{s.servico.valorServico}">
+					<h:outputText value="#{s.servico.valorServico}" />
+				</p:column>
+
+				<p:column exportable="false"
+					styleClass="align-center fornecedor-coluna-acoes">
+					<p:commandButton icon="fa fa-pencil" update="formServicos">
+						<f:setPropertyActionListener value="#{f}"
+							target="#{cadastroServicoBean.servico}" />
+					</p:commandButton>
+
+					<p:commandButton icon="fa fa-trash"
+						update="formDataTable:confirmDialog"
+						oncomplete="PF('confirmDialog').show()">
+						<f:setPropertyActionListener value="#{f}"
+							target="#{cadastroServicoBean.servico}" />
+					</p:commandButton>
+				</p:column>
+
+			</p:dataTable>
+
+			<p:confirmDialog id="confirmDialog" header="Atenção!"
+				responsive="true"
+				message="Tem certeza que deseja excluir a pessoa com nome: #{cadastroServicoBean.servico.descricao} ?"
+				widgetVar="confirmDialog" showEffect="fade" hideEffect="fade"
+				closable="false" closeOnEscape="true">
+
+				<p:commandButton value="Sim" icon="fa fa-check" update="@form"
+					action="#{cadastroServicoBean.excluir}"
+					oncomplete="PF('confirmDialog').hide()" />
+
+				<p:button value="Não" icon="fa fa-times"
+					onclick="PF('confirmDialog').hide(); return false;" />
+
+			</p:confirmDialog>
+
+		</h:form>
+
+
+
 
 	</ui:define>
 

@@ -37,3 +37,9 @@
 	text-align: center;
 	margin-right: 10px;
 }
+
+.ui-fluid{
+	width: 50%;
+	margin: auto;
+}
+
