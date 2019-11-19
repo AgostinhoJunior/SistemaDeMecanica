@@ -45,30 +45,158 @@
 						value="#{cadastroAtendimentoBean.atendimento.cliente.pessoa.telefone}"
 						placeholder="Informe seu Telefone" />
 
+
+					<p:outputLabel value="Carro " for="carro" />
+					<p:inputText id="carro" required="true"
+						requiredMessage="O nome do carro deve ser preenchido"
+						value="#{cadastroAtendimentoBean.atendimento.cliente.carro.nomeCarro}"
+						placeholder="Informe o nome	 do carro" />
+
 					<p:outputLabel value="Marca " for="marca" />
 					<p:inputText id="marca" required="true"
 						requiredMessage="A marca do carro deve ser preenchido"
 						value="#{cadastroAtendimentoBean.atendimento.cliente.carro.marca}"
 						placeholder="Informe a marca do carro" />
 
+					<p:outputLabel value="Ano " for="ano" />
+					<p:inputText id="ano" required="true"
+						requiredMessage="Ano do carro deve ser preenchido"
+						value="#{cadastroAtendimentoBean.atendimento.cliente.carro.ano}"
+						placeholder="Informe o ano do carro" />
 
 				</p:panelGrid>
 			</div>
 
-		</h:form>
 
-		<h:form>
-			<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5"
-				columnClasses="label, value">
-				<p:outputLabel for="campoAtributos" value="Atributos:" />
-				<p:selectManyMenu id="campoAtributos" value="#{cadastroAtendimentoBean.atendimento.servicos}">
+			<p:panelGrid styleClass="ui-panelgrid-blank ui-fluid" columns="2"
+				layout="grid" style="margin-bottom:10px" cellpadding="5"
+				columnClasses="label, value ">
+				<p:outputLabel for="campoAtributos" value="Serviços:" />
+				<p:selectManyMenu id="campoAtributos"
+					value="#{cadastroAtendimentoBean.atendimento.servicos}">
 					<f:attribute name="collectionType" value="java.util.ArrayList" />
 					<f:selectItem noSelectionOption="true"
 						itemLabel="Selecione serviços" />
-					<f:selectItems var="servicos" value="#{}"
-						itemLabel="#{}" />
+					<f:selectItems var="servico"
+						value="#{cadastroServicoBean.servicos}"
+						itemLabel="Descricao: #{servico.descricao} Valor Servico: #{servico.valorServico}$ " />
 				</p:selectManyMenu>
-			</h:panelGrid>
+			</p:panelGrid>
+
+			<p:spacer height="10" />
+
+			<p:toolbar>
+				<f:facet name="left">
+					<p:commandButton value="Salvar" icon="fa fa-save"
+						update="formDataTable formAtendimento"
+						action="#{cadastroAtendimentoBean.salvar}" />
+
+					<p:commandButton value="Limpar" icon="fa fa-eraser" update="@form"
+						process="@this" action="#{cadastroAtendimentoBean.limpar}" />
+				</f:facet>
+			</p:toolbar>
+
+		</h:form>
+
+		<p:spacer height="10" />
+
+		<h:form id="formDataTable">
+
+			<p:dataTable id="table" var="a" widgetVar="table" reflow="true"
+				paginator="true" rows="5" paginatorPosition="bottom"
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
+				rowsPerPageTemplate="5,10,15"
+				value="#{cadastroAtendimentoBean.atendimentos}"
+				filteredValue="#{cadastroAtendimentoBean.atendimentosFiltro}">
+
+				<f:facet name="{Exporters}">
+					<div class="tabela-exportacoes">
+						<h:commandLink>
+							<p:graphicImage library="imagens" name="excel.png" width="24" />
+							<p:dataExporter type="xls" target="table" fileName="atendimentos" />
+						</h:commandLink>
+
+						<h:commandLink>
+							<p:graphicImage library="imagens" name="pdf.png" width="24" />
+							<p:dataExporter type="pdf" target="table" fileName="atendimentos" />
+						</h:commandLink>
+
+						<h:commandLink>
+							<p:graphicImage library="imagens" name="csv.png" width="24" />
+							<p:dataExporter type="csv" target="table" fileName="atendimentos" />
+						</h:commandLink>
+
+						<h:commandLink>
+							<p:graphicImage library="imagens" name="xml.png" width="24" />
+							<p:dataExporter type="xml" target="table" fileName="atendimentos" />
+						</h:commandLink>
+					</div>
+				</f:facet>
+
+				<p:column headerText="Nome" filterBy="#{a.cliente.pessoa.nome}"
+					filterMatchMode="contains" sortBy="#{a.cliente.pessoa.nome}">
+					<h:outputText value="#{a.cliente.pessoa.nome}" />
+				</p:column>
+
+				<p:column headerText="CPF" filterBy="#{a.cliente.pessoa.cpf}"
+					filterMatchMode="contains" sortBy="#{a.cliente.pessoa.cpf}">
+					<h:outputText value="#{a.cliente.pessoa.cpf}" />
+				</p:column>
+
+				<p:column headerText="Telefone"
+					filterBy="#{a.cliente.pessoa.telefone}" filterMatchMode="contains"
+					sortBy="#{a.cliente.pessoa.telefone}">
+					<h:outputText value="#{a.cliente.pessoa.telefone}" />
+				</p:column>
+
+				<p:column headerText="Carro" filterBy="#{a.cliente.carro.nomeCarro}"
+					filterMatchMode="contains" sortBy="#{a.cliente.carro.nomeCarro}">
+					<h:outputText value="#{a.cliente.carro.nomeCarro}" />
+				</p:column>
+
+				<p:column headerText="Marca" filterBy="#{a.cliente.carro.marca}"
+					filterMatchMode="contains" sortBy="#{a.cliente.carro.marca}">
+					<h:outputText value="#{a.cliente.carro.marca}" />
+				</p:column>
+
+				<p:column headerText="Ano" filterBy="#{a.cliente.carro.ano}"
+					filterMatchMode="contains" sortBy="#{a.cliente.carro.ano}">
+					<h:outputText value="#{a.cliente.carro.ano}" />
+				</p:column>
+
+
+				<p:column exportable="false"
+					styleClass="align-center fornecedor-coluna-acoes">
+					<p:commandButton icon="fa fa-pencil" update="formAtendimento">
+						<f:setPropertyActionListener value="#{a}"
+							target="#{cadastroAtendimentoBean.atendimento}" />
+					</p:commandButton>
+
+					<p:commandButton icon="fa fa-trash"
+						update="formDataTable:confirmDialog"
+						oncomplete="PF('confirmDialog').show()">
+						<f:setPropertyActionListener value="#{a}"
+							target="#{cadastroAtendimentoBean.atendimento}" />
+					</p:commandButton>
+				</p:column>
+
+			</p:dataTable>
+
+			<p:confirmDialog id="confirmDialog" header="Atenção!"
+				responsive="true"
+				message="Tem certeza que deseja excluir a pessoa com nome: #{cadastroAtendimentoBean.cliente.pessoa.nome} ?"
+				widgetVar="confirmDialog" showEffect="fade" hideEffect="fade"
+				closable="false" closeOnEscape="true">
+
+				<p:commandButton value="Sim" icon="fa fa-check" update="@form"
+					action="#{cadastroAtendimentoBean.excluir}"
+					oncomplete="PF('confirmDialog').hide()" />
+
+				<p:button value="Não" icon="fa fa-times"
+					onclick="PF('confirmDialog').hide(); return false;" />
+
+			</p:confirmDialog>
+
 		</h:form>
 
 	</ui:define>

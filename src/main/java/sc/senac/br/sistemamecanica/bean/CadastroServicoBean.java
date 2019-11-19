@@ -6,12 +6,16 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import sc.senac.br.sistemamecanica.dao.IBaseDao;
 import sc.senac.br.sistemamecanica.dao.ServicoDao;
 import sc.senac.br.sistemamecanica.model.Servico;
 
+@ManagedBean
+@ViewScoped
 public class CadastroServicoBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -103,6 +107,12 @@ public class CadastroServicoBean implements Serializable {
 
 	public void setServicoDao(IBaseDao<Servico> servicoDao) {
 		this.servicoDao = servicoDao;
+	}
+
+	@Override
+	public String toString() {
+		return "CadastroServicoBean [servico=" + servico + ", servicos=" + servicos + ", servicosFiltro="
+				+ servicosFiltro + ", servicoDao=" + servicoDao + "]";
 	}
 
 }

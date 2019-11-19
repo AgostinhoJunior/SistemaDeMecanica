@@ -117,15 +117,21 @@
 					<h:outputText value="#{f.pessoa.email}" />
 				</p:column>
 
-
-				<p:column headerText="Nascimento" sortBy="#{f.pessoa.nascimento}"
-					styleClass="align-center fornecedor-coluna-nascimento">
-
-					<h:outputText value="#{f.pessoa.nascimento}">
-						<f:convertDateTime pattern="dd/MM/yyyy"
-							timeZone="#{initParam.timezone}" />
-					</h:outputText>
+				<p:column headerText="CPF/CNPJ" filterBy="#{f.pessoa.cpf}"
+					filterMatchMode="contains" sortBy="#{f.pessoa.cpf}">
+					<h:outputText value="#{f.pessoa.cpf}" />
 				</p:column>
+
+				<p:column headerText="Nome Fantasia" filterBy="#{f.nomeFantasia}"
+					filterMatchMode="contains" sortBy="#{f.nomeFantasia}">
+					<h:outputText value="#{f.nomeFantasia}" />
+				</p:column>
+
+				<p:column headerText="Razão Social" filterBy="#{f.razaoSocial}"
+					filterMatchMode="contains" sortBy="#{f.razaoSocial}">
+					<h:outputText value="#{f.razaoSocial}" />
+				</p:column>
+
 
 				<p:column exportable="false"
 					styleClass="align-center fornecedor-coluna-acoes">

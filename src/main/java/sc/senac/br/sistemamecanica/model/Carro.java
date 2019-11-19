@@ -18,9 +18,7 @@ public class Carro implements IBaseModel{
 	
 	private String marca;
 
-	private String cor;
-
-	private Long ano;
+	private String ano;
 
 	public Long getCodigo() {
 		return codigo;
@@ -38,19 +36,11 @@ public class Carro implements IBaseModel{
 		this.marca = marca;
 	}
 
-	public String getCor() {
-		return cor;
-	}
-
-	public void setCor(String cor) {
-		this.cor = cor;
-	}
-
-	public Long getAno() {
+	public String getAno() {
 		return ano;
 	}
 
-	public void setAno(Long ano) {
+	public void setAno(String ano) {
 		this.ano = ano;
 	}
 

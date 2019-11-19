@@ -19,10 +19,10 @@ public class Cliente implements IBaseModel{
 	@OneToOne(cascade = CascadeType.REMOVE)
 	private Pessoa pessoa;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.REMOVE)
 	private Carro carro;
 	
-	@OneToOne(cascade = CascadeType.REMOVE)
+	
 	public Long getCodigo() {
 		return codigo;
 	}

@@ -37,7 +37,7 @@
 
 					<p:outputLabel value="Valor Servico: " for="valorServico" />
 					<p:inputText id="valorServico" required="true"
-						requiredMessage="valorTotal deve ser preenchido"
+						requiredMessage="valor Servico deve ser preenchido"
 						value="#{cadastroServicoBean.servico.valorServico}"
 						placeholder="Informe o valor do Servico" />
 
@@ -95,28 +95,31 @@
 					</div>
 				</f:facet>
 
-				<p:column headerText="Descricao" filterBy="#{s.servico.descricao}"
-					filterMatchMode="contains" sortBy="#{s.servico.descricao}">
-					<h:outputText value="#{s.servico.descricao}" />
+				<p:column headerText="Descricao" 
+					filterBy="#{s.descricao}"
+					filterMatchMode="contains" 
+					sortBy="#{s.descricao}">
+					<h:outputText value="#{s.descricao}" />
 				</p:column>
 
 				<p:column headerText="Valor servico"
-					filterBy="#{s.servico.valorServico}" filterMatchMode="contains"
-					sortBy="#{s.servico.valorServico}">
-					<h:outputText value="#{s.servico.valorServico}" />
+					filterBy="#{s.valorServico}" 
+					filterMatchMode="contains"	
+					sortBy="#{s.valorServico}">
+					<h:outputText value="#{s.valorServico}" />
 				</p:column>
 
 				<p:column exportable="false"
 					styleClass="align-center fornecedor-coluna-acoes">
 					<p:commandButton icon="fa fa-pencil" update="formServicos">
-						<f:setPropertyActionListener value="#{f}"
+						<f:setPropertyActionListener value="#{s}"
 							target="#{cadastroServicoBean.servico}" />
 					</p:commandButton>
 
 					<p:commandButton icon="fa fa-trash"
 						update="formDataTable:confirmDialog"
 						oncomplete="PF('confirmDialog').show()">
-						<f:setPropertyActionListener value="#{f}"
+						<f:setPropertyActionListener value="#{s}"
 							target="#{cadastroServicoBean.servico}" />
 					</p:commandButton>
 				</p:column>
@@ -139,9 +142,6 @@
 			</p:confirmDialog>
 
 		</h:form>
-
-
-
 
 	</ui:define>
 
