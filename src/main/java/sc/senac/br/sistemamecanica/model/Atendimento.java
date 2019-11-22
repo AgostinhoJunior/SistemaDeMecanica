@@ -12,23 +12,21 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.google.protobuf.DescriptorProtos.FieldDescriptorProto.Type;
-
 @Entity
 @Table(name = "atendimento")
-public class Atendimento implements IBaseModel{
+public class Atendimento implements IBaseModel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
-	
+
 	@OneToOne(cascade = CascadeType.REMOVE)
 	private Cliente cliente;
-	
+
 	@OneToMany(mappedBy = "atendimento", fetch = FetchType.EAGER)
-	private List<Servico> servicos;
-	
-	private Double valorTotal; 
+	private List<AtendimentoServico> atendimentoServicos;
+
+	private Double valorTotal;
 
 	public Long getCodigo() {
 		return codigo;
@@ -46,14 +44,6 @@ public class Atendimento implements IBaseModel{
 		this.cliente = cliente;
 	}
 
-	public List<Servico> getServicos() {
-		return servicos;
-	}
-
-	public void setServicos(List<Servico> servicos) {
-		this.servicos = servicos;
-	}
-
 	public Double getValorTotal() {
 		return valorTotal;
 	}
@@ -61,5 +51,13 @@ public class Atendimento implements IBaseModel{
 	public void setValorTotal(Double valorTotal) {
 		this.valorTotal = valorTotal;
 	}
-	
+
+	public List<AtendimentoServico> getAtendimentoServicos() {
+		return atendimentoServicos;
+	}
+
+	public void setAtendimentoServicos(List<AtendimentoServico> atendimentoServicos) {
+		this.atendimentoServicos = atendimentoServicos;
+	}
+
 }

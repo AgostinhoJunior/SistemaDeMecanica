@@ -73,13 +73,14 @@
 				columnClasses="label, value ">
 				<p:outputLabel for="campoAtributos" value="Serviços:" />
 				<p:selectManyMenu id="campoAtributos"
-					value="#{cadastroAtendimentoBean.atendimento.servicos}">
+					value="#{cadastroAtendimentoBean.servicosSelecionado}">
 					<f:attribute name="collectionType" value="java.util.ArrayList" />
 					<f:selectItem noSelectionOption="true"
 						itemLabel="Selecione serviços" />
-					<f:selectItems var="servico"
-						value="#{cadastroServicoBean.servicos}"
-						itemLabel="Descricao: #{servico.descricao} Valor Servico: #{servico.valorServico}$ " />
+					<f:selectItems var="ser"
+						value="#{cadastroAtendimentoBean.servicos}"
+						itemLabel="Descricao: #{ser.descricao} Valor Servico: #{ser.valorServico}$ "
+						itemValue="#{ser}" />
 				</p:selectManyMenu>
 			</p:panelGrid>
 

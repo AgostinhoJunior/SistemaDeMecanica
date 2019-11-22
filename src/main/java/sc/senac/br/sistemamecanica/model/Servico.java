@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,9 +17,6 @@ public class Servico implements IBaseModel {
 	private String descricao;
 
 	private Double valorServico;
-
-	@ManyToOne
-	private Atendimento atendimento;
 
 	public Long getCodigo() {
 		return codigo;
@@ -44,14 +40,6 @@ public class Servico implements IBaseModel {
 
 	public void setValorServico(Double valorServico) {
 		this.valorServico = valorServico;
-	}
-
-	public Atendimento getAtendimento() {
-		return atendimento;
-	}
-
-	public void setAtendimento(Atendimento atendimento) {
-		this.atendimento = atendimento;
 	}
 
 }
