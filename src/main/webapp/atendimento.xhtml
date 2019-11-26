@@ -80,14 +80,13 @@
 
 					<p:outputLabel for="campoServicos" value="Serviços:" />
 					<p:selectManyMenu id="campoServicos"
-						value="#{cadastroAtendimentoBean.atendimento.servicos}">
+						value="#{cadastroAtendimentoBean.atendimento.servicos}"
+						converter="ServicoConverter">
 						<f:attribute name="collectionType" value="java.util.ArrayList" />
-						<f:selectItem noSelectionOption="true"
-							itemLabel="Selecione serviços" />
+
 						<f:selectItems var="ser"
 							value="#{cadastroAtendimentoBean.servicos}"
-							itemLabel="Descricao: #{ser.descricao} Valor Servico: #{ser.valorServico}$ "
-							/>
+							itemLabel="Descricao: #{ser.descricao} Valor Servico: #{ser.valorServico}$ " />
 					</p:selectManyMenu>
 				</p:panelGrid>
 			</div>

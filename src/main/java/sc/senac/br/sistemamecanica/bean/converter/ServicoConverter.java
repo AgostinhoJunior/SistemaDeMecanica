@@ -8,7 +8,7 @@ import javax.faces.convert.FacesConverter;
 import sc.senac.br.sistemamecanica.dao.ServicoDao;
 import sc.senac.br.sistemamecanica.model.Servico;
 
-@FacesConverter(forClass = Servico.class)
+@FacesConverter(forClass = Servico.class, value = "ServicoConverter")
 public class ServicoConverter implements Converter {
 
 	private ServicoDao servicoDao;
@@ -19,20 +19,24 @@ public class ServicoConverter implements Converter {
 
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
-		if (value == null || value.isEmpty()) {
+		if (servicoDao.buscarPorID(Long.valueOf(value)) == null) {
 			return null;
+		} else {
+			Servico servico = (Servico) servicoDao.buscarPorID(Long.valueOf(value));
+			return servico;
 		}
-
-		return servicoDao.buscarPorID(new Long(value));
 	}
 
 	@Override
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
-		if (value == null) {
-			return null;
-		}
+		Servico servico = (Servico) value;
+		servico = servicoDao.buscarPorID(servico.getCodigo());
 
-		return ((Servico) value).getCodigo().toString();
+		if (servico == null) {
+			return null;
+		} else {
+			return servico.getCodigo().toString();
+		}
 	}
 
 }

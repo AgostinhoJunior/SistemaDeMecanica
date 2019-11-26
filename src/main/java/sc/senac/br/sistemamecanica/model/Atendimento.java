@@ -23,7 +23,7 @@ public class Atendimento implements IBaseModel {
 	@OneToOne(cascade = CascadeType.REMOVE)
 	private Cliente cliente;
 
-	@ManyToMany(mappedBy = "atendimento", cascade = CascadeType.REMOVE)
+	@ManyToMany(mappedBy = "atendimento", cascade = CascadeType.PERSIST)
 	private List<Servico> servicos;
 
 	@OneToOne

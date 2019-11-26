@@ -68,10 +68,6 @@ public class CadastroAtendimentoBean implements Serializable {
 			pessoaDao.salvar(atendimento.getCliente().getPessoa());
 			carroDao.salvar(atendimento.getCliente().getCarro());
 			clienteDao.salvar(atendimento.getCliente());
-			List<Servico> servicosParaSalvar = atendimento.getServicos();
-			for (Servico novoServico : servicosParaSalvar) {
-				servicoDao.salvar(novoServico);
-			}
 			atendimentoDao.salvar(atendimento);
 		
 
