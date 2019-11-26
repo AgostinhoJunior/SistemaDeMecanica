@@ -45,6 +45,12 @@
 						value="#{cadastroFuncionarioBean.funcionario.pessoa.cpf}"
 						placeholder="Informe seu CPF" />
 
+					<p:outputLabel value="Funcao " for="funcao" />
+					<p:inputText id="funcao" required="true"
+						requiredMessage="Funcao deve ser preenchido"
+						value="#{cadastroFuncionarioBean.funcionario.funcao}"
+						placeholder="Informe a funcao do funcionario" />
+
 					<p:outputLabel value="Nascimento: " for="nascimento" />
 					<p:calendar id="nascimento" widgetVar="calWidget" effect="fade"
 						navigator="true" pattern="dd/MM/yyyy" yearRange="c-100:c+0"
@@ -122,16 +128,10 @@
 					<h:outputText value="#{f.pessoa.cpf}" />
 				</p:column>
 
-				<p:column headerText="Nome Fantasia" filterBy="#{f.nomeFantasia}"
-					filterMatchMode="contains" sortBy="#{f.nomeFantasia}">
-					<h:outputText value="#{f.nomeFantasia}" />
+				<p:column headerText="Funcao" filterBy="#{f.funcao}"
+					filterMatchMode="contains" sortBy="#{f.funcao}">
+					<h:outputText value="#{f.funcao}" />
 				</p:column>
-
-				<p:column headerText="Razão Social" filterBy="#{f.razaoSocial}"
-					filterMatchMode="contains" sortBy="#{f.razaoSocial}">
-					<h:outputText value="#{f.razaoSocial}" />
-				</p:column>
-
 
 				<p:column exportable="false"
 					styleClass="align-center fornecedor-coluna-acoes">

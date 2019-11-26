@@ -1,4 +1,4 @@
-package sc.senac.br.sistemamecanica.bean;
+package sc.senac.br.sistemamecanica.bean.converter;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -9,12 +9,12 @@ import sc.senac.br.sistemamecanica.dao.ServicoDao;
 import sc.senac.br.sistemamecanica.model.Servico;
 
 @FacesConverter(forClass = Servico.class)
-public class ServicosConverter implements Converter {
+public class ServicoConverter implements Converter {
 
-	private ServicoDao dao;
+	private ServicoDao servicoDao;
 
-	public ServicosConverter() {
-		dao = new ServicoDao();
+	public ServicoConverter() {
+		servicoDao = new ServicoDao();
 	}
 
 	@Override
@@ -23,7 +23,7 @@ public class ServicosConverter implements Converter {
 			return null;
 		}
 
-		return dao.buscarPorID(new Long(value));
+		return servicoDao.buscarPorID(new Long(value));
 	}
 
 	@Override
@@ -31,7 +31,7 @@ public class ServicosConverter implements Converter {
 		if (value == null) {
 			return null;
 		}
-		
+
 		return ((Servico) value).getCodigo().toString();
 	}
 

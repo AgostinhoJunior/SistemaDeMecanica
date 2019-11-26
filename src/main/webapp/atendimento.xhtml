@@ -64,25 +64,33 @@
 						value="#{cadastroAtendimentoBean.atendimento.cliente.carro.ano}"
 						placeholder="Informe o ano do carro" />
 
+
+					<p:outputLabel value="Funcionario: " for="funcionario"
+						class="ui-fluid" />
+					<p:selectOneMenu id="funcionario"
+						value="#{cadastroAtendimentoBean.atendimento.funcionario}">
+						<f:selectItem itemLabel="Selecione um funcionario ..."
+							noSelectionOption="true" />
+
+						<f:selectItems var="s"
+							value="#{cadastroAtendimentoBean.funcionarios}"
+							itemLabel="#{s.pessoa.nome} / #{s.funcao}" />
+					</p:selectOneMenu>
+
+
+					<p:outputLabel for="campoServicos" value="Serviços:" />
+					<p:selectManyMenu id="campoServicos"
+						value="#{cadastroAtendimentoBean.atendimento.servicos}">
+						<f:attribute name="collectionType" value="java.util.ArrayList" />
+						<f:selectItem noSelectionOption="true"
+							itemLabel="Selecione serviços" />
+						<f:selectItems var="ser"
+							value="#{cadastroAtendimentoBean.servicos}"
+							itemLabel="Descricao: #{ser.descricao} Valor Servico: #{ser.valorServico}$ "
+							/>
+					</p:selectManyMenu>
 				</p:panelGrid>
 			</div>
-
-
-			<p:panelGrid styleClass="ui-panelgrid-blank ui-fluid" columns="2"
-				layout="grid" style="margin-bottom:10px" cellpadding="5"
-				columnClasses="label, value ">
-				<p:outputLabel for="campoAtributos" value="Serviços:" />
-				<p:selectManyMenu id="campoAtributos"
-					value="#{cadastroAtendimentoBean.servicosSelecionado}">
-					<f:attribute name="collectionType" value="java.util.ArrayList" />
-					<f:selectItem noSelectionOption="true"
-						itemLabel="Selecione serviços" />
-					<f:selectItems var="ser"
-						value="#{cadastroAtendimentoBean.servicos}"
-						itemLabel="Descricao: #{ser.descricao} Valor Servico: #{ser.valorServico}$ "
-						itemValue="#{ser}" />
-				</p:selectManyMenu>
-			</p:panelGrid>
 
 			<p:spacer height="10" />
 

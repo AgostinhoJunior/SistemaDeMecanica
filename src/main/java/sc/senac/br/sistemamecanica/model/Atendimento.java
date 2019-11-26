@@ -4,10 +4,10 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -23,8 +23,11 @@ public class Atendimento implements IBaseModel {
 	@OneToOne(cascade = CascadeType.REMOVE)
 	private Cliente cliente;
 
-	@OneToMany(mappedBy = "atendimento", fetch = FetchType.EAGER)
-	private List<AtendimentoServico> atendimentoServicos;
+	@ManyToMany(mappedBy = "atendimento", cascade = CascadeType.REMOVE)
+	private List<Servico> servicos;
+
+	@OneToOne
+	private Funcionario funcionario;
 
 	private Double valorTotal;
 
@@ -52,12 +55,20 @@ public class Atendimento implements IBaseModel {
 		this.valorTotal = valorTotal;
 	}
 
-	public List<AtendimentoServico> getAtendimentoServicos() {
-		return atendimentoServicos;
+	public List<Servico> getServicos() {
+		return servicos;
 	}
 
-	public void setAtendimentoServicos(List<AtendimentoServico> atendimentoServicos) {
-		this.atendimentoServicos = atendimentoServicos;
+	public void setServicos(List<Servico> servicos) {
+		this.servicos = servicos;
+	}
+
+	public Funcionario getFuncionario() {
+		return funcionario;
+	}
+
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
 	}
 
 }
