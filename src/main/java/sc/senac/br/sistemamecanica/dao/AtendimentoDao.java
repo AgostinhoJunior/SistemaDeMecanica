@@ -20,7 +20,7 @@ public class AtendimentoDao extends BaseDao<Atendimento> {
 		jpqlBuilder.append("  ser.descricao ");
 		jpqlBuilder.append(") ");
 		jpqlBuilder.append("from Atendimento ate ");
-		jpqlBuilder.append("right join ate.servico ser ");
+		jpqlBuilder.append("right join ate.servicos ser ");
 		jpqlBuilder.append("group by ser.descricao ");
 
 		TypedQuery<ServicoPorAtendimentoDTO> query = manager.createQuery(jpqlBuilder.toString(),

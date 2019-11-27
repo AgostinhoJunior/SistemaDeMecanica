@@ -83,7 +83,7 @@ public class DashboardController implements Serializable {
 		dados.addChartDataSet(dataset);
 		dados.setLabels(rotulos);
 
-		servicosPorAtendimentoModel.setData(dados);
+		carrosPorAtendimentoModel.setData(dados);
 
 	}
 
@@ -99,4 +99,5 @@ public class DashboardController implements Serializable {
 		this.carrosPorAtendimentoModel = carrosPorAtendimentoModel;
 	}
 
+	
 }

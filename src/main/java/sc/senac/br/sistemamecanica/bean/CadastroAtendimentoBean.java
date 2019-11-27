@@ -85,7 +85,6 @@ public class CadastroAtendimentoBean implements Serializable {
 			pessoaDao.salvar(atendimento.getCliente().getPessoa());
 			carroDao.salvar(atendimento.getCliente().getCarro());
 			clienteDao.salvar(atendimento.getCliente());
-
 			atendimentoDao.alterar(atendimento);
 
 			FacesMessage mensagem = new FacesMessage();

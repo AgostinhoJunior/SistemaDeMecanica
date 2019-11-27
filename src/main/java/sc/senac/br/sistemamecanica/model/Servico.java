@@ -20,10 +20,7 @@ public class Servico implements IBaseModel {
 	private String descricao;
 
 	private Double valorServico;
-
-	@ManyToMany
-	private List<Atendimento> atendimento;
-
+	
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -47,15 +44,7 @@ public class Servico implements IBaseModel {
 	public void setValorServico(Double valorServico) {
 		this.valorServico = valorServico;
 	}
-
-
-	public List<Atendimento> getAtendimento() {
-		return atendimento;
-	}
-
-	public void setAtendimento(List<Atendimento> atendimento) {
-		this.atendimento = atendimento;
-	}
+	
 
 	@Override
 	public int hashCode() {
@@ -80,12 +69,6 @@ public class Servico implements IBaseModel {
 		} else if (!codigo.equals(other.codigo))
 			return false;
 		return true;
-	}
-	
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
 	}
 
 }
