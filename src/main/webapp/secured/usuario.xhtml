@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<ui:composition template="/WEB-INF/templates/layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Cadastro de Usuarios</ui:define>
+
+
+	<ui:define name="conteudo">
+
+		<h2 id="titulo">Gerenciamento de Usuarios</h2>
+
+		<h:form id="formUsuario">
+
+			<div class="ui-fluid">
+
+
+				<p:spacer height="10" />
+
+				<p:panelGrid columns="2" layout="grid"
+					columnClasses="ui-g-4 ui-md-3 ui-lg-2, ui-g-8 ui-md-9 ui-lg-10"
+					styleClass="ui-panelgrid-blank">
+
+					<p:outputLabel value="Nome: " for="nome" />
+					<p:inputText id="nome" required="true"
+						requiredMessage="Nome deve ser preenchido"
+						value="#{cadastroUsuarioBean.usuario.nome}"
+						placeholder="Informe seu nome" />
+
+
+					<p:outputLabel value="Email: " for="email" />
+					<p:inputText id="email" required="true"
+						requiredMessage="E-mail deve ser preenchido"
+						value="#{cadastroUsuarioBean.usuario.email}"
+						placeholder="Informe o seu E-mail " />
+
+					<p:outputLabel value="Senha: " for="senha" />
+					<p:inputText id="senha" required="true"
+						requiredMessage="Senha deve ser preenchido"
+						value="#{cadastroUsuarioBean.usuario.senha}"
+						placeholder="Informe a sua senha " />
+
+				</p:panelGrid>
+
+				<h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5">
+					<p:selectBooleanCheckbox
+						value="#{cadastroUsuarioBean.usuario.ativo}" itemLabel="Ativo" />
+
+				</h:panelGrid>
+
+			</div>
+
+			<p:spacer height="10" />
+
+			<p:toolbar class="botoes">
+				<f:facet name="left">
+					<p:commandButton value="Salvar" icon="fa fa-save"
+						update="formUsuario formDataTable"
+						action="#{cadastroUsuarioBean.salvar}" />
+
+					<p:commandButton value="Limpar" icon="fa fa-eraser" update="@form"
+						process="@this" action="#{cadastroUsuarioBean.limpar}" />
+				</f:facet>
+			</p:toolbar>
+
+		</h:form>
+
+		<p:spacer height="10" />
+
+		<h:form id="formDataTable">
+
+			<p:dataTable id="table" var="u" widgetVar="table" reflow="true"
+				paginator="true" rows="5" paginatorPosition="bottom"
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
+				rowsPerPageTemplate="5,10,15"
+				value="#{cadastroUsuarioBean.usuarios	}"
+				filteredValue="#{cadastroUsuarioBean.usuariosFiltro}">
+
+				<f:facet name="{Exporters}">
+					<div class="tabela-exportacoes">
+						<h:commandLink>
+							<p:graphicImage library="imagens" name="excel.png" width="24" />
+							<p:dataExporter type="xls" target="table" fileName="usuarios" />
+						</h:commandLink>
+
+						<h:commandLink>
+							<p:graphicImage library="imagens" name="pdf.png" width="24" />
+							<p:dataExporter type="pdf" target="table" fileName="usuarios" />
+						</h:commandLink>
+
+						<h:commandLink>
+							<p:graphicImage library="imagens" name="csv.png" width="24" />
+							<p:dataExporter type="csv" target="table" fileName="usuarios" />
+						</h:commandLink>
+
+						<h:commandLink>
+							<p:graphicImage library="imagens" name="xml.png" width="24" />
+							<p:dataExporter type="xml" target="table" fileName="usuarios" />
+						</h:commandLink>
+					</div>
+				</f:facet>
+
+				<p:column headerText="Nome" filterBy="#{u.nome}"
+					filterMatchMode="contains" sortBy="#{u.nome}">
+					<h:outputText value="#{u.nome}" />
+				</p:column>
+
+				<p:column headerText="E-mail" filterBy="#{u.email}"
+					filterMatchMode="contains" sortBy="#{u.email}">
+					<h:outputText value="#{u.email}" />
+				</p:column>
+
+				<p:column headerText="Senha" filterBy="#{u.senha}"
+					filterMatchMode="contains" sortBy="#{u.senha}">
+					<h:outputText value="#{u.senha}" />
+				</p:column>
+
+				<p:column headerText="Ativo" filterBy="#{u.ativo}"
+					filterMatchMode="contains" sortBy="#{u.ativo}">
+					<h:outputText value="#{u.ativo}" />
+				</p:column>
+
+				<p:column exportable="false"
+					styleClass="align-center fornecedor-coluna-acoes">
+					<p:commandButton icon="fa fa-pencil" update="formUsuario">
+						<f:setPropertyActionListener value="#{u}"
+							target="#{cadastroUsuarioBean.usuario}" />
+					</p:commandButton>
+
+					<p:commandButton icon="fa fa-trash"
+						update="formDataTable:confirmDialog"
+						oncomplete="PF('confirmDialog').show()">
+						<f:setPropertyActionListener value="#{u}"
+							target="#{cadastroUsuarioBean.usuario}" />
+					</p:commandButton>
+				</p:column>
+
+			</p:dataTable>
+
+			<p:confirmDialog id="confirmDialog" header="Atenção!"
+				responsive="true"
+				message="Tem certeza que deseja excluir a pessoa com nome: #{cadastroUsuarioBean.usuario.nome} ?"
+				widgetVar="confirmDialog" showEffect="fade" hideEffect="fade"
+				closable="false" closeOnEscape="true">
+
+				<p:commandButton value="Sim" icon="fa fa-check" update="@form"
+					action="#{cadastroUsuarioBean.excluir}"
+					oncomplete="PF('confirmDialog').hide()" />
+
+				<p:button value="Não" icon="fa fa-times"
+					onclick="PF('confirmDialog').hide(); return false;" />
+
+			</p:confirmDialog>
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>

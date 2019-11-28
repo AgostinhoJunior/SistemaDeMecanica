@@ -4,21 +4,37 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
-	
-		<h:form>
-		<p:menubar>
+
+<h:form>
+	<p:menubar>
 		<p:submenu label="Cadastros" icon="fa fa-save">
-				<p:menuitem value="Fornecedor" outcome="fornecedor" icon="fa fa-industry"/>
-				<p:menuitem value="Funcionario" outcome="funcionario" icon="fa fa-users"/>
-				<p:menuitem value="Servico" outcome="servico" icon="fa fa-list"/>
-			</p:submenu>
-			<p:menuitem value="Atendimento" outcome="atendimento" icon="fa fa-phone"/>
-			<p:menuitem value="Dashboard" outcome="dashboard" />
-			
-			<f:facet name="options">
-	           <p:commandButton type="button" value="Sair" icon="fa fa-home" />
-	       </f:facet>
-		</p:menubar>
-	</h:form>
-	
+			<p:menuitem value="Fornecedor" outcome="/secured/fornecedor"
+				icon="fa fa-industry" />
+			<p:menuitem value="Funcionario" outcome="/secured/funcionario"
+				icon="fa fa-users" />
+			<p:menuitem value="Servico" outcome="/secured/servico"
+				icon="fa fa-list" />
+			<p:menuitem value="Usuarios" outcome="/secured/usuario"
+				icon="fa fa-user" />
+		</p:submenu>
+		<p:menuitem value="Atendimento" outcome="/secured/atendimento"
+			icon="fa fa-phone" />
+		<p:menuitem value="Dashboard" outcome="/secured/dashboard" />
+
+		<f:facet name="options">
+			<h:commandButton title="Português" styleClass="bandeira-idioma"
+				image="#{resource['imagens/brazil-flag.png']}">
+			</h:commandButton>
+
+			<h:commandButton title="Inglês" styleClass="bandeira-idioma"
+				image="#{resource['imagens/england-flag.png']}">
+			</h:commandButton>
+		</f:facet>
+		<f:facet name="options">
+			<p:commandButton value="Sair" icon="fa fa-home"
+				action="#{loginBean.logout}" />
+		</f:facet>
+	</p:menubar>
+</h:form>
+
 </html>

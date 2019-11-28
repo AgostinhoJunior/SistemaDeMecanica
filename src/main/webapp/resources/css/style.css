@@ -3,7 +3,7 @@
 }
 
 #titulo {
-	text-align: center;	
+	text-align: center;
 }
 
 .fornecedor-coluna-acoes {
@@ -15,31 +15,35 @@
 }
 
 .tabela-exportacoes {
-	float:right;
+	float: right;
 	padding-top: 2px;
 }
 
 .tabela-exportacoes a {
-	margin-right: 5px;	
+	margin-right: 5px;
 }
 
 .ui-filter-column .ui-column-customfilter .custom-filter {
-    width: 100%;
-    box-sizing: border-box;
-}
- 
-.year-spinner input {
-    width: 100%;
-    box-sizing: border-box;
+	width: 100%;
+	box-sizing: border-box;
 }
 
-.ui-menuitem-icon{
+.year-spinner input {
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.ui-menuitem-icon {
 	text-align: center;
 	margin-right: 10px;
 }
 
-.ui-fluid{
+.ui-fluid {
 	width: 50%;
 	margin: auto;
 }
 
+.bandeira-idioma {
+	width: 30px;
+	margin-right: 10px;
+}

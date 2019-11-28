@@ -60,16 +60,13 @@ public class CadastroAtendimentoBean implements Serializable {
 	}
 
 	public void salvar() {
-		
-		
-		
+
 		if (atendimento.getCodigo() == null) {
 
 			pessoaDao.salvar(atendimento.getCliente().getPessoa());
 			carroDao.salvar(atendimento.getCliente().getCarro());
 			clienteDao.salvar(atendimento.getCliente());
 			atendimentoDao.salvar(atendimento);
-		
 
 			FacesMessage mensagem = new FacesMessage();
 			mensagem.setSeverity(FacesMessage.SEVERITY_INFO);

@@ -7,16 +7,20 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "servico")
-public class Servico implements IBaseModel {
+@Table(name = "usuario")
+public class Usuario implements IBaseModel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 
-	private String descricao;
+	private String nome;
 
-	private Double valorServico;
+	private String email;
+
+	private String senha;
+
+	private Boolean ativo;
 
 	public Long getCodigo() {
 		return codigo;
@@ -26,20 +30,36 @@ public class Servico implements IBaseModel {
 		this.codigo = codigo;
 	}
 
-	public String getDescricao() {
-		return descricao;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public Double getValorServico() {
-		return valorServico;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setValorServico(Double valorServico) {
-		this.valorServico = valorServico;
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public Boolean getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
 	}
 
 	@Override
@@ -58,7 +78,7 @@ public class Servico implements IBaseModel {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Servico other = (Servico) obj;
+		Usuario other = (Usuario) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;
