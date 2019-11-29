@@ -17,12 +17,12 @@ public class CarroDao extends BaseDao<Carro> {
 		StringBuilder jpqlBuilder = new StringBuilder();
 		jpqlBuilder.append("select new sc.senac.br.sistemamecanica.dto.CarroPorAtendimentoDTO( ");
 		jpqlBuilder.append("  count(car), ");
-		jpqlBuilder.append("  car.nomeCarro ");
+		jpqlBuilder.append("  car.marca ");
 		jpqlBuilder.append(") ");
 		jpqlBuilder.append("from Atendimento ate ");
 		jpqlBuilder.append("right join ate.cliente cli ");
 		jpqlBuilder.append("right join cli.carro car ");
-		jpqlBuilder.append("group by car.nomeCarro ");
+		jpqlBuilder.append("group by car.marca");
 
 		TypedQuery<CarroPorAtendimentoDTO> query = manager.createQuery(jpqlBuilder.toString(),
 				CarroPorAtendimentoDTO.class);

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,7 +24,7 @@ public class Atendimento implements IBaseModel {
 	@OneToOne(cascade = CascadeType.REMOVE)
 	private Cliente cliente;
 
-	@ManyToMany(targetEntity = Servico.class , cascade = CascadeType.MERGE)
+	@ManyToMany(targetEntity = Servico.class, cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 	private List<Servico> servicos;
 
 	@OneToOne

@@ -8,8 +8,9 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
-import sc.senac.br.sistemamecanica.dao.UsuarioDao;
+import sc.senac.br.sistemamecanica.exception.UsuarioInvalidoException;
 import sc.senac.br.sistemamecanica.model.Usuario;
+import sc.senac.br.sistemamecanica.service.LoginService;
 
 @ManagedBean
 @SessionScoped
@@ -20,27 +21,25 @@ public class LoginBean implements Serializable {
 	private String email;
 	private String senha;
 
-	private UsuarioDao usuarioDao;
+	private LoginService service;
 
 	public LoginBean() {
-		usuarioDao = new UsuarioDao();
+		service = new LoginService();
 	}
 
 	public String login() {
-		Usuario usuarioLogado = usuarioDao.verificaLogin(email, senha);
 
-		if (usuarioLogado == null) {
+		try {
+			Usuario usuarioLogado = service.verificaLogin(email, senha);
+			
+		} catch (UsuarioInvalidoException ex) {
 			FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR, "E-mail ou senha inválido!", null);
 
 			FacesContext.getCurrentInstance().addMessage(null, mensagem);
 
 			return "/login.xhtml";
 		}
-
-		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-
-		session.setAttribute("usuarioLogado", usuarioLogado);
-
+		
 		return "/secured/dashboard.xhtml?faces-redirect=true";
 	}
 
