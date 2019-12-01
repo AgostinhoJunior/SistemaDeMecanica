@@ -9,6 +9,7 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
 import sc.senac.br.sistemamecanica.exception.UsuarioInvalidoException;
+import sc.senac.br.sistemamecanica.exception.UsuarioNaoEstaAtivo;
 import sc.senac.br.sistemamecanica.model.Usuario;
 import sc.senac.br.sistemamecanica.service.LoginService;
 
@@ -20,27 +21,35 @@ public class LoginBean implements Serializable {
 
 	private String email;
 	private String senha;
+	FacesMessage mensagem;
 
 	private LoginService service;
 
 	public LoginBean() {
 		service = new LoginService();
+		mensagem = new FacesMessage();
 	}
 
-	public String login() {
+	public String login() throws UsuarioNaoEstaAtivo {
 
 		try {
+
 			Usuario usuarioLogado = service.verificaLogin(email, senha);
-			
+			return "/secured/dashboard.xhtml?faces-redirect=true";
+
 		} catch (UsuarioInvalidoException ex) {
-			FacesMessage mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR, "E-mail ou senha inválido!", null);
+			mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR, "E-mail ou senha inválido!", null);
 
 			FacesContext.getCurrentInstance().addMessage(null, mensagem);
 
 			return "/login.xhtml";
+		} catch (UsuarioNaoEstaAtivo ex) {
+			mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario esta inativo!", null);
+
+			FacesContext.getCurrentInstance().addMessage(null, mensagem);
+			return "/login.xhtml";
 		}
-		
-		return "/secured/dashboard.xhtml?faces-redirect=true";
+
 	}
 
 	public String logout() {

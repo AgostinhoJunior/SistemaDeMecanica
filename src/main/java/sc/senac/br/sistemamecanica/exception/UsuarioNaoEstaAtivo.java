@@ -1,10 +1,10 @@
 package sc.senac.br.sistemamecanica.exception;
 
-public class UsuarioInvalidoException extends Exception {
+public class UsuarioNaoEstaAtivo extends Exception {
 
 	private static final long serialVersionUID = 1L;
 
-	public UsuarioInvalidoException(String message) {
+	public UsuarioNaoEstaAtivo(String message) {
 		super(message);
 	}
 }

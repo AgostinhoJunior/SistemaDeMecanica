@@ -39,6 +39,7 @@ public class CadastroAtendimentoBean implements Serializable {
 	private List<Servico> servicos;
 	private List<Funcionario> funcionarios;
 	private List<Servico> servicosSelecionado;
+	FacesMessage mensagem;
 
 	private Atendimento atendimento;
 	private Cliente cliente;
@@ -54,6 +55,7 @@ public class CadastroAtendimentoBean implements Serializable {
 		carroDao = new CarroDao();
 		servicoDao = new ServicoDao();
 		funcionarioDao = new FuncionarioDao();
+		mensagem = new FacesMessage();
 		limpar();
 		buscar();
 
@@ -68,7 +70,6 @@ public class CadastroAtendimentoBean implements Serializable {
 			clienteDao.salvar(atendimento.getCliente());
 			atendimentoDao.salvar(atendimento);
 
-			FacesMessage mensagem = new FacesMessage();
 			mensagem.setSeverity(FacesMessage.SEVERITY_INFO);
 			mensagem.setSummary("Atendimento salvo com sucesso!");
 
@@ -79,12 +80,11 @@ public class CadastroAtendimentoBean implements Serializable {
 
 		} else {
 
-			pessoaDao.salvar(atendimento.getCliente().getPessoa());
-			carroDao.salvar(atendimento.getCliente().getCarro());
-			clienteDao.salvar(atendimento.getCliente());
+			pessoaDao.alterar(atendimento.getCliente().getPessoa());
+			carroDao.alterar(atendimento.getCliente().getCarro());
+			clienteDao.alterar(atendimento.getCliente());
 			atendimentoDao.alterar(atendimento);
 
-			FacesMessage mensagem = new FacesMessage();
 			mensagem.setSeverity(FacesMessage.SEVERITY_INFO);
 			mensagem.setSummary("Atendimento alterado com sucesso!");
 
@@ -100,7 +100,6 @@ public class CadastroAtendimentoBean implements Serializable {
 		limpar();
 		buscar();
 
-		FacesMessage mensagem = new FacesMessage();
 		mensagem.setSeverity(FacesMessage.SEVERITY_INFO);
 		mensagem.setSummary("Atendimento excluído com sucesso!");
 

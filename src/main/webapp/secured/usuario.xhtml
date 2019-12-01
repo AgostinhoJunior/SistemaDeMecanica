@@ -13,6 +13,9 @@
 	<ui:define name="conteudo">
 
 		<h2 id="titulo">Gerenciamento de Usuarios</h2>
+		<p:growl sticky="true" life="10000">
+			<p:autoUpdate />
+		</p:growl>
 
 		<h:form id="formUsuario">
 
@@ -73,11 +76,17 @@
 
 		<h:form id="formDataTable">
 
-			<p:dataTable id="table" var="u" widgetVar="table" reflow="true"
-				paginator="true" rows="5" paginatorPosition="bottom"
+			<p:dataTable id="table" 
+				var="u" 
+				widgetVar="table" 
+				reflow="true"
+				paginator="true" 
+				rows="5" 
+				lazy="true"
+				paginatorPosition="bottom"
 				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
 				rowsPerPageTemplate="5,10,15"
-				value="#{cadastroUsuarioBean.usuarios	}"
+				value="#{cadastroUsuarioBean.model}" 
 				filteredValue="#{cadastroUsuarioBean.usuariosFiltro}">
 
 				<f:facet name="{Exporters}">
