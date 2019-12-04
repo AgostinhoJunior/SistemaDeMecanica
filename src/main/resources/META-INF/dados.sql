@@ -1,0 +1,1 @@
+INSERT INTO usuario (ativo, email, nome,senha) VALUES (1, 'admin@sistemamecanica.com', 'admin', '615Wal92G.9iU', )
