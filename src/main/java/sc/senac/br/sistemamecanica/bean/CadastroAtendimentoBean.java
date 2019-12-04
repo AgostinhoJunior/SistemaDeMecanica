@@ -8,7 +8,6 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 
 import sc.senac.br.sistemamecanica.dao.AtendimentoDao;
 import sc.senac.br.sistemamecanica.dao.CarroDao;
@@ -23,6 +22,7 @@ import sc.senac.br.sistemamecanica.model.Cliente;
 import sc.senac.br.sistemamecanica.model.Funcionario;
 import sc.senac.br.sistemamecanica.model.Pessoa;
 import sc.senac.br.sistemamecanica.model.Servico;
+import sc.senac.br.sistemamecanica.util.MensagemUtil;
 
 @ManagedBean
 @ViewScoped
@@ -70,10 +70,7 @@ public class CadastroAtendimentoBean implements Serializable {
 			clienteDao.salvar(atendimento.getCliente());
 			atendimentoDao.salvar(atendimento);
 
-			mensagem.setSeverity(FacesMessage.SEVERITY_INFO);
-			mensagem.setSummary("Atendimento salvo com sucesso!");
-
-			FacesContext.getCurrentInstance().addMessage(null, mensagem);
+			MensagemUtil.addMensagemInfo("mensagem.cadastrosucesso");
 
 			limpar();
 			buscar();
@@ -85,10 +82,8 @@ public class CadastroAtendimentoBean implements Serializable {
 			clienteDao.alterar(atendimento.getCliente());
 			atendimentoDao.alterar(atendimento);
 
-			mensagem.setSeverity(FacesMessage.SEVERITY_INFO);
-			mensagem.setSummary("Atendimento alterado com sucesso!");
+			MensagemUtil.addMensagemInfo("mensagem.alteradosucesso");
 
-			FacesContext.getCurrentInstance().addMessage(null, mensagem);
 			limpar();
 			buscar();
 		}
@@ -100,10 +95,7 @@ public class CadastroAtendimentoBean implements Serializable {
 		limpar();
 		buscar();
 
-		mensagem.setSeverity(FacesMessage.SEVERITY_INFO);
-		mensagem.setSummary("Atendimento excluído com sucesso!");
-
-		FacesContext.getCurrentInstance().addMessage(null, mensagem);
+		MensagemUtil.addMensagemInfo("mensagem.deletadosucesso");
 	}
 
 	public void limpar() {

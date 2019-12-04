@@ -2,7 +2,6 @@ package sc.senac.br.sistemamecanica.bean;
 
 import java.io.Serializable;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -12,6 +11,7 @@ import sc.senac.br.sistemamecanica.exception.UsuarioInvalidoException;
 import sc.senac.br.sistemamecanica.exception.UsuarioNaoEstaAtivo;
 import sc.senac.br.sistemamecanica.model.Usuario;
 import sc.senac.br.sistemamecanica.service.LoginService;
+import sc.senac.br.sistemamecanica.util.MensagemUtil;
 
 @ManagedBean
 @SessionScoped
@@ -21,32 +21,27 @@ public class LoginBean implements Serializable {
 
 	private String email;
 	private String senha;
-	FacesMessage mensagem;
+	private Usuario usuarioLogado;
 
 	private LoginService service;
 
 	public LoginBean() {
 		service = new LoginService();
-		mensagem = new FacesMessage();
 	}
 
 	public String login() throws UsuarioNaoEstaAtivo {
 
 		try {
 
-			Usuario usuarioLogado = service.verificaLogin(email, senha);
+			usuarioLogado = service.verificaLogin(email, senha);
 			return "/secured/dashboard.xhtml?faces-redirect=true";
 
 		} catch (UsuarioInvalidoException ex) {
-			mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR, "E-mail ou senha inválido!", null);
-
-			FacesContext.getCurrentInstance().addMessage(null, mensagem);
+			MensagemUtil.addMensagemError("mensagem.emailinvalido");
 
 			return "/login.xhtml";
 		} catch (UsuarioNaoEstaAtivo ex) {
-			mensagem = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario esta inativo!", null);
-
-			FacesContext.getCurrentInstance().addMessage(null, mensagem);
+			MensagemUtil.addMensagemError("mensagem.usuarioinativo");
 			return "/login.xhtml";
 		}
 
@@ -74,6 +69,14 @@ public class LoginBean implements Serializable {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public Usuario getUsuarioLogado() {
+		return usuarioLogado;
+	}
+
+	public void setUsuarioLogado(Usuario usuarioLogado) {
+		this.usuarioLogado = usuarioLogado;
 	}
 
 }

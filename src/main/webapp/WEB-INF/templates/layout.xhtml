@@ -4,27 +4,24 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
-	
+<f:view locale="#{idiomaBean.locale}">
 	<h:head>
-	
-	 	<title><ui:insert name="titulo">Titulo Padrão</ui:insert></title>
+
+		<title><ui:insert name="titulo">Titulo Padrão</ui:insert></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<h:outputStylesheet library="css" name="style.css" />
-	
 	</h:head>
-	
+
 	<h:body>
-	
-		
+
+
 		<p:growl autoUpdate="true" />
-		
+
 		<ui:include src="/WEB-INF/templates/menu-principal.xhtml" />
-		
+
 		<p:spacer height="30px" />
-		
-		<ui:insert name="conteudo"/>
-		
-	
+
+		<ui:insert name="conteudo" />
 	</h:body>
-	
+</f:view>
 </html>

@@ -7,34 +7,47 @@
 
 <h:form>
 	<p:menubar>
-		<p:submenu label="Cadastros" icon="fa fa-save">
-			<p:menuitem value="Fornecedor" outcome="/secured/fornecedor"
-				icon="fa fa-industry" />
-			<p:menuitem value="Funcionario" outcome="/secured/funcionario"
-				icon="fa fa-users" />
-			<p:menuitem value="Servico" outcome="/secured/servico"
-				icon="fa fa-list" />
-			<p:menuitem value="Usuarios" outcome="/secured/usuario"
-				icon="fa fa-user" />
+		<p:submenu label="#{msg['menu.cadastro']}" icon="fa fa-save">
+			<p:menuitem value="#{msg['menuitem.fornecedor']}"
+				outcome="/secured/fornecedor" icon="fa fa-industry" />
+			<p:menuitem value="#{msg['menuitem.funcionario']}"
+				outcome="/secured/funcionario" icon="fa fa-users" />
+			<p:menuitem value="#{msg['menuitem.servico']}"
+				outcome="/secured/servico" icon="fa fa-list" />
+			<p:menuitem value="#{msg['menuitem.usuarios']}"
+				outcome="/secured/usuario" icon="fa fa-user" />
 		</p:submenu>
-		<p:menuitem value="Estoque" outcome="/secured/estoque"
-			icon="fa fa-archive" />
-		<p:menuitem value="Atendimento" outcome="/secured/atendimento"
-			icon="fa fa-phone" />
+		<p:menuitem value="#{msg['menuitem.estoque']}"
+			outcome="/secured/estoque" icon="fa fa-archive" />
+		<p:menuitem value="#{msg['menuitem.atendimento']}"
+			outcome="/secured/atendimento" icon="fa fa-phone" />
 		<p:menuitem value="Dashboard" outcome="/secured/dashboard"
 			icon="fa fa-columns" />
 
+
 		<f:facet name="options">
+
+			<h:outputText
+				value="#{msg['text.usuariologado']} #{loginBean.usuarioLogado.nome}"
+				styleClass="usuario-logado" />
+
 			<h:commandButton title="Português" styleClass="bandeira-idioma"
 				image="#{resource['imagens/brazil-flag.png']}">
+
+				<f:setPropertyActionListener value="pt"
+					target="#{idiomaBean.idiomaSelecionado}" />
+
 			</h:commandButton>
 
 			<h:commandButton title="Inglês" styleClass="bandeira-idioma"
 				image="#{resource['imagens/england-flag.png']}">
+				<f:setPropertyActionListener value="en"
+					target="#{idiomaBean.idiomaSelecionado}" />
+
 			</h:commandButton>
 		</f:facet>
 		<f:facet name="options">
-			<p:commandButton value="Sair" icon="fa fa-home"
+			<p:commandButton value="#{msg['button.sair']}" icon="fa fa-home"
 				action="#{loginBean.logout}" />
 		</f:facet>
 	</p:menubar>

@@ -5,10 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 
 import org.primefaces.model.LazyDataModel;
 
@@ -18,6 +16,7 @@ import sc.senac.br.sistemamecanica.dao.UsuarioDao;
 import sc.senac.br.sistemamecanica.model.Usuario;
 import sc.senac.br.sistemamecanica.service.LoginService;
 import sc.senac.br.sistemamecanica.util.CriptografiaUtil;
+import sc.senac.br.sistemamecanica.util.MensagemUtil;
 
 @ViewScoped
 @ManagedBean
@@ -48,10 +47,8 @@ public class CadastroUsuarioBean implements Serializable {
 		if (usuario.getCodigo() == null) {
 
 			if (loginService.verificaSeJaExisteNoBanco(usuario)) {
-				FacesMessage mensagem = new FacesMessage();
-				mensagem.setSeverity(FacesMessage.SEVERITY_ERROR);
-				mensagem.setSummary("Usuario ja existe no banco!!");
-				FacesContext.getCurrentInstance().addMessage(null, mensagem);
+
+				MensagemUtil.addMensagemError("mensagem.usuariojaexistenobanco");
 				return;
 			}
 
@@ -60,20 +57,12 @@ public class CadastroUsuarioBean implements Serializable {
 
 			usuarioDao.salvar(usuario);
 
-			FacesMessage mensagem = new FacesMessage();
-			mensagem.setSeverity(FacesMessage.SEVERITY_INFO);
-			mensagem.setSummary("Usuario salvo com sucesso!");
-
-			FacesContext.getCurrentInstance().addMessage(null, mensagem);
+			MensagemUtil.addMensagemInfo("mensagem.cadastrosucesso");
 
 		} else {
 			usuarioDao.alterar(usuario);
 
-			FacesMessage mensagem = new FacesMessage();
-			mensagem.setSeverity(FacesMessage.SEVERITY_INFO);
-			mensagem.setSummary("Usuario alterado com sucesso!");
-
-			FacesContext.getCurrentInstance().addMessage(null, mensagem);
+			MensagemUtil.addMensagemInfo("mensagem.alteradosucesso");
 		}
 
 		limpar();
@@ -85,11 +74,7 @@ public class CadastroUsuarioBean implements Serializable {
 		limpar();
 		buscar();
 
-		FacesMessage mensagem = new FacesMessage();
-		mensagem.setSeverity(FacesMessage.SEVERITY_INFO);
-		mensagem.setSummary("Usuario excluido com sucesso!");
-
-		FacesContext.getCurrentInstance().addMessage(null, mensagem);
+		MensagemUtil.addMensagemInfo("mensagem.deletadosucesso");
 	}
 
 	public void limpar() {

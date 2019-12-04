@@ -5,20 +5,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 
 import sc.senac.br.sistemamecanica.dao.FuncionarioDao;
 import sc.senac.br.sistemamecanica.dao.IBaseDao;
 import sc.senac.br.sistemamecanica.dao.PessoaDao;
 import sc.senac.br.sistemamecanica.model.Funcionario;
 import sc.senac.br.sistemamecanica.model.Pessoa;
+import sc.senac.br.sistemamecanica.util.MensagemUtil;
 
 @ViewScoped
 @ManagedBean
-public class CadastroFuncionarioBean implements Serializable{
+public class CadastroFuncionarioBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -27,7 +26,7 @@ public class CadastroFuncionarioBean implements Serializable{
 	private List<Funcionario> funcionariosFiltro;
 	private IBaseDao<Funcionario> funcionarioDao;
 	private IBaseDao<Pessoa> pessoaDao;
-	
+
 	@PostConstruct
 	public void init() {
 		funcionarioDao = new FuncionarioDao();
@@ -41,21 +40,13 @@ public class CadastroFuncionarioBean implements Serializable{
 			pessoaDao.salvar(funcionario.getPessoa());
 			funcionarioDao.salvar(funcionario);
 
-			FacesMessage mensagem = new FacesMessage();
-			mensagem.setSeverity(FacesMessage.SEVERITY_INFO);
-			mensagem.setSummary("Fornecedor salvo com sucesso!");
-
-			FacesContext.getCurrentInstance().addMessage(null, mensagem);
+			MensagemUtil.addMensagemInfo("mensagem.cadastrosucesso");
 
 		} else {
 			pessoaDao.alterar(funcionario.getPessoa());
 			funcionarioDao.alterar(funcionario);
 
-			FacesMessage mensagem = new FacesMessage();
-			mensagem.setSeverity(FacesMessage.SEVERITY_INFO);
-			mensagem.setSummary("Pessoa alterada com sucesso!");
-
-			FacesContext.getCurrentInstance().addMessage(null, mensagem);
+			MensagemUtil.addMensagemInfo("mensagem.alteradosucesso");
 		}
 
 		limpar();
@@ -67,11 +58,7 @@ public class CadastroFuncionarioBean implements Serializable{
 		limpar();
 		buscar();
 
-		FacesMessage mensagem = new FacesMessage();
-		mensagem.setSeverity(FacesMessage.SEVERITY_INFO);
-		mensagem.setSummary("Pessoa excluída com sucesso!");
-
-		FacesContext.getCurrentInstance().addMessage(null, mensagem);
+		MensagemUtil.addMensagemInfo("mensagem.deletadosucesso");
 	}
 
 	public void limpar() {
@@ -115,5 +102,5 @@ public class CadastroFuncionarioBean implements Serializable{
 	public void setFuncionarioDao(IBaseDao<Funcionario> funcionarioDao) {
 		this.funcionarioDao = funcionarioDao;
 	}
-	
+
 }

@@ -12,7 +12,7 @@
 
 	<ui:define name="conteudo">
 
-		<h2 id="titulo">Gerenciamento de Funcionarios</h2>
+		<h2 id="titulo">#{msg['h2.funcionario']}</h2>
 		<p:growl sticky="true" life="10000">
 			<p:autoUpdate />
 		</p:growl>
@@ -27,7 +27,7 @@
 					columnClasses="ui-g-4 ui-md-3 ui-lg-2, ui-g-8 ui-md-9 ui-lg-10"
 					styleClass="ui-panelgrid-blank">
 
-					<p:outputLabel value="Nome: " for="nome" />
+					<p:outputLabel value="#{msg['label.nome']}" for="nome" />
 					<p:inputText id="nome" required="true"
 						requiredMessage="Nome deve ser preenchido"
 						value="#{cadastroFuncionarioBean.funcionario.pessoa.nome}"
@@ -45,13 +45,13 @@
 						value="#{cadastroFuncionarioBean.funcionario.pessoa.cpf}"
 						placeholder="Informe seu CPF" />
 
-					<p:outputLabel value="Funcao " for="funcao" />
+					<p:outputLabel value="#{msg['label.funcao']}" for="funcao" />
 					<p:inputText id="funcao" required="true"
 						requiredMessage="Funcao deve ser preenchido"
 						value="#{cadastroFuncionarioBean.funcionario.funcao}"
 						placeholder="Informe a funcao do funcionario" />
 
-					<p:outputLabel value="Nascimento: " for="nascimento" />
+					<p:outputLabel value="#{msg['label.nascimento']}" for="nascimento" />
 					<p:calendar id="nascimento" widgetVar="calWidget" effect="fade"
 						navigator="true" pattern="dd/MM/yyyy" yearRange="c-100:c+0"
 						maxdate="calWidget.today()" required="true"
@@ -68,12 +68,13 @@
 
 			<p:toolbar>
 				<f:facet name="left">
-					<p:commandButton value="Salvar" icon="fa fa-save"
+					<p:commandButton value="#{msg['button.salvar']}" icon="fa fa-save"
 						update="formDataTable formCadastroFuncionarios"
 						action="#{cadastroFuncionarioBean.salvar}" />
 
-					<p:commandButton value="Limpar" icon="fa fa-eraser" update="@form"
-						process="@this" action="#{cadastroFuncionarioBean.limpar}" />
+					<p:commandButton value="#{msg['button.limpar']}"
+						icon="fa fa-eraser" update="@form" process="@this"
+						action="#{cadastroFuncionarioBean.limpar}" />
 				</f:facet>
 			</p:toolbar>
 
@@ -113,8 +114,9 @@
 					</div>
 				</f:facet>
 
-				<p:column headerText="Nome" filterBy="#{f.pessoa.nome}"
-					filterMatchMode="contains" sortBy="#{f.pessoa.nome}">
+				<p:column headerText="#{msg['label.nome']}"
+					filterBy="#{f.pessoa.nome}" filterMatchMode="contains"
+					sortBy="#{f.pessoa.nome}">
 					<h:outputText value="#{f.pessoa.nome}" />
 				</p:column>
 
@@ -128,7 +130,7 @@
 					<h:outputText value="#{f.pessoa.cpf}" />
 				</p:column>
 
-				<p:column headerText="Funcao" filterBy="#{f.funcao}"
+				<p:column headerText="#{msg['label.funcao']}" filterBy="#{f.funcao}"
 					filterMatchMode="contains" sortBy="#{f.funcao}">
 					<h:outputText value="#{f.funcao}" />
 				</p:column>
@@ -151,17 +153,17 @@
 
 			</p:dataTable>
 
-			<p:confirmDialog id="confirmDialog" header="Atenção!"
+			<p:confirmDialog id="confirmDialog" header="#{msg['header.atencao']}"
 				responsive="true"
-				message="Tem certeza que deseja excluir a pessoa com nome: #{cadastroFuncionarioBean.funcionario.pessoa.nome} ?"
+				message="#{msg['message.excluir']} #{cadastroFuncionarioBean.funcionario.pessoa.nome} ?"
 				widgetVar="confirmDialog" showEffect="fade" hideEffect="fade"
 				closable="false" closeOnEscape="true">
 
-				<p:commandButton value="Sim" icon="fa fa-check" update="@form"
-					action="#{cadastroFuncionarioBean.excluir}"
+				<p:commandButton value="#{msg['button.sim']}" icon="fa fa-check"
+					update="@form" action="#{cadastroFuncionarioBean.excluir}"
 					oncomplete="PF('confirmDialog').hide()" />
 
-				<p:button value="Não" icon="fa fa-times"
+				<p:button value="#{msg['button.nao']}" icon="fa fa-times"
 					onclick="PF('confirmDialog').hide(); return false;" />
 
 			</p:confirmDialog>

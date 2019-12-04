@@ -12,7 +12,8 @@
 
 	<ui:define name="conteudo">
 
-		<h2 id="titulo">Gerenciamento de Atendimento</h2>
+		<h2 id="titulo">#{msg['h2.atendimento']}</h2>
+
 		<p:growl sticky="true" life="10000">
 			<p:autoUpdate />
 		</p:growl>
@@ -25,50 +26,50 @@
 					columnClasses="ui-g-4 ui-md-3 ui-lg-2, ui-g-8 ui-md-9 ui-lg-10"
 					styleClass="ui-panelgrid-blank">
 
-					<p:outputLabel value="Nome: " for="nome" />
+					<p:outputLabel value="#{msg['label.nome']}" for="nome" />
 					<p:inputText id="nome" required="true"
-						requiredMessage="Nome deve ser preenchido"
+						requiredMessage="#{msg['required.nome']}"
 						value="#{cadastroAtendimentoBean.atendimento.cliente.pessoa.nome}"
-						placeholder="Informe seu nome" />
+						placeholder="#{msg['place.nome']}" />
 
 
 					<p:outputLabel value="CPF " for="cpf" />
 					<p:inputText id="cpf" required="true"
-						requiredMessage="CPF deve ser preenchido"
+						requiredMessage="#{msg['required.cpf']}"
 						value="#{cadastroAtendimentoBean.atendimento.cliente.pessoa.cpf}"
-						placeholder="Informe seu CPF" />
+						placeholder="#{msg['place.cpf']}" />
 
-					<p:outputLabel value="Telefone " for="telefone" />
+					<p:outputLabel value="#{msg['label.telefone']}" for="telefone" />
 					<p:inputText id="telefone" required="true"
-						requiredMessage="Telefone deve ser preenchido"
+						requiredMessage="#{msg['required.telefone']}"
 						value="#{cadastroAtendimentoBean.atendimento.cliente.pessoa.telefone}"
-						placeholder="Informe seu Telefone" />
+						placeholder="#{msg['place.telefone']}" />
 
 
-					<p:outputLabel value="Carro " for="carro" />
+					<p:outputLabel value="#{msg['label.carro']}" for="carro" />
 					<p:inputText id="carro" required="true"
-						requiredMessage="O nome do carro deve ser preenchido"
+						requiredMessage="#{msg['required.carro']}"
 						value="#{cadastroAtendimentoBean.atendimento.cliente.carro.nomeCarro}"
-						placeholder="Informe o nome	 do carro" />
+						placeholder="#{msg['place.carro']}" />
 
-					<p:outputLabel value="Marca " for="marca" />
+					<p:outputLabel value="#{msg['label.marca']}" for="marca" />
 					<p:inputText id="marca" required="true"
-						requiredMessage="A marca do carro deve ser preenchido"
+						requiredMessage="#{msg['required.marca']}"
 						value="#{cadastroAtendimentoBean.atendimento.cliente.carro.marca}"
-						placeholder="Informe a marca do carro" />
+						placeholder="#{msg['place.marca']}" />
 
-					<p:outputLabel value="Ano " for="ano" />
+					<p:outputLabel value="#{msg['label.ano']}" for="ano" />
 					<p:inputText id="ano" required="true"
-						requiredMessage="Ano do carro deve ser preenchido"
+						requiredMessage="#{msg['required.ano']}"
 						value="#{cadastroAtendimentoBean.atendimento.cliente.carro.ano}"
-						placeholder="Informe o ano do carro" />
+						placeholder="#{msg['place.ano']}" />
 
 
-					<p:outputLabel value="Funcionario: " for="funcionario"
-						class="ui-fluid" />
+					<p:outputLabel value="#{msg['label.funcionario']}"
+						for="funcionario" class="ui-fluid" />
 					<p:selectOneMenu id="funcionario"
 						value="#{cadastroAtendimentoBean.atendimento.funcionario}">
-						<f:selectItem itemLabel="Selecione um funcionario ..."
+						<f:selectItem itemLabel="#{msg['itemlabel.funcionario']}"
 							noSelectionOption="true" />
 
 						<f:selectItems var="s"
@@ -77,7 +78,7 @@
 					</p:selectOneMenu>
 
 
-					<p:outputLabel for="campoServicos" value="Serviços:" />
+					<p:outputLabel for="campoServicos" value="#{msg['label.servico']}" />
 					<p:selectManyMenu id="campoServicos"
 						value="#{cadastroAtendimentoBean.atendimento.servicos}"
 						converter="ServicoConverter">
@@ -94,12 +95,13 @@
 
 			<p:toolbar>
 				<f:facet name="left">
-					<p:commandButton value="Salvar" icon="fa fa-save"
+					<p:commandButton value="#{msg['button.salvar']}" icon="fa fa-save"
 						update="formDataTable formAtendimento"
 						action="#{cadastroAtendimentoBean.salvar}" />
 
-					<p:commandButton value="Limpar" icon="fa fa-eraser" update="@form"
-						process="@this" action="#{cadastroAtendimentoBean.limpar}" />
+					<p:commandButton value="#{msg['button.limpar']}"
+						icon="fa fa-eraser" update="@form" process="@this"
+						action="#{cadastroAtendimentoBean.limpar}" />
 				</f:facet>
 			</p:toolbar>
 
@@ -140,8 +142,9 @@
 					</div>
 				</f:facet>
 
-				<p:column headerText="Nome" filterBy="#{a.cliente.pessoa.nome}"
-					filterMatchMode="contains" sortBy="#{a.cliente.pessoa.nome}">
+				<p:column headerText="#{msg['label.nome']}"
+					filterBy="#{a.cliente.pessoa.nome}" filterMatchMode="contains"
+					sortBy="#{a.cliente.pessoa.nome}">
 					<h:outputText value="#{a.cliente.pessoa.nome}" />
 				</p:column>
 
@@ -150,24 +153,27 @@
 					<h:outputText value="#{a.cliente.pessoa.cpf}" />
 				</p:column>
 
-				<p:column headerText="Telefone"
+				<p:column headerText="#{msg['label.telefone']}"
 					filterBy="#{a.cliente.pessoa.telefone}" filterMatchMode="contains"
 					sortBy="#{a.cliente.pessoa.telefone}">
 					<h:outputText value="#{a.cliente.pessoa.telefone}" />
 				</p:column>
 
-				<p:column headerText="Carro" filterBy="#{a.cliente.carro.nomeCarro}"
-					filterMatchMode="contains" sortBy="#{a.cliente.carro.nomeCarro}">
+				<p:column headerText="#{msg['label.carro']}"
+					filterBy="#{a.cliente.carro.nomeCarro}" filterMatchMode="contains"
+					sortBy="#{a.cliente.carro.nomeCarro}">
 					<h:outputText value="#{a.cliente.carro.nomeCarro}" />
 				</p:column>
 
-				<p:column headerText="Marca" filterBy="#{a.cliente.carro.marca}"
-					filterMatchMode="contains" sortBy="#{a.cliente.carro.marca}">
+				<p:column headerText="#{msg['label.marca']}"
+					filterBy="#{a.cliente.carro.marca}" filterMatchMode="contains"
+					sortBy="#{a.cliente.carro.marca}">
 					<h:outputText value="#{a.cliente.carro.marca}" />
 				</p:column>
 
-				<p:column headerText="Ano" filterBy="#{a.cliente.carro.ano}"
-					filterMatchMode="contains" sortBy="#{a.cliente.carro.ano}">
+				<p:column headerText="#{msg['label.ano']}"
+					filterBy="#{a.cliente.carro.ano}" filterMatchMode="contains"
+					sortBy="#{a.cliente.carro.ano}">
 					<h:outputText value="#{a.cliente.carro.ano}" />
 				</p:column>
 
@@ -189,17 +195,17 @@
 
 			</p:dataTable>
 
-			<p:confirmDialog id="confirmDialog" header="Atenção!"
+			<p:confirmDialog id="confirmDialog" header="#{msg['header.atencao']}"
 				responsive="true"
-				message="Tem certeza que deseja excluir a pessoa com nome: #{cadastroAtendimentoBean.cliente.pessoa.nome} ?"
+				message="#{msg['message.excluir']} #{cadastroAtendimentoBean.atendimento.cliente.pessoa.nome} ?"
 				widgetVar="confirmDialog" showEffect="fade" hideEffect="fade"
 				closable="false" closeOnEscape="true">
 
-				<p:commandButton value="Sim" icon="fa fa-check" update="@form"
-					action="#{cadastroAtendimentoBean.excluir}"
+				<p:commandButton value="#{msg['button.sim']}" icon="fa fa-check"
+					update="@form" action="#{cadastroAtendimentoBean.excluir}"
 					oncomplete="PF('confirmDialog').hide()" />
 
-				<p:button value="Não" icon="fa fa-times"
+				<p:button value="#{msg['button.nao']}" icon="fa fa-times"
 					onclick="PF('confirmDialog').hide(); return false;" />
 
 			</p:confirmDialog>

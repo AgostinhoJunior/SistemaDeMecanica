@@ -18,13 +18,13 @@
 
 		<p:panelGrid layout="grid" columns="4"
 			columnClasses="ui-fluid ui-lg-6, ui-lg-6">
-			<p:panel id="servicos" header="Servicos por atendimento"
+			<p:panel id="servicos" header="#{msg['header.pieservico']}"
 				style="text-align: center;">
 				<p:pieChart
 					model="#{dashboardController.servicosPorAtendimentoModel}" />
 			</p:panel>
 
-			<p:panel id="marcaCarros" header="Marcas de carro por atendimento"
+			<p:panel id="marcaCarros" header="#{msg['header.piecarro']}"
 				style="text-align: center;">
 				<p:pieChart model="#{dashboardController.carrosPorAtendimentoModel}" />
 			</p:panel>

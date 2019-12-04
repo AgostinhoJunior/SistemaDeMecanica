@@ -12,13 +12,13 @@
 
 	<ui:define name="conteudo">
 
-		<h2 id="titulo">Gerenciamento de Fornecedores</h2>
+		<h2 id="titulo">#{msg['h2.fornecedor']}</h2>
 		<p:growl sticky="true" life="10000">
 			<p:autoUpdate />
 		</p:growl>
 
 		<p:spacer height="20" />
-		
+
 		<h:form id="formCadastroFornecedor">
 
 			<div class="ui-fluid">
@@ -27,7 +27,7 @@
 					columnClasses="ui-g-4 ui-md-3 ui-lg-2, ui-g-8 ui-md-9 ui-lg-10"
 					styleClass="ui-panelgrid-blank">
 
-					<p:outputLabel value="Nome: " for="nome" />
+					<p:outputLabel value="#{msg['label.nome']}" for="nome" />
 					<p:inputText id="nome" required="true"
 						requiredMessage="Nome deve ser preenchido"
 						value="#{cadastroFornecedorBean.fornecedor.pessoa.nome}"
@@ -44,15 +44,17 @@
 						requiredMessage="CPF deve ser preenchido"
 						value="#{cadastroFornecedorBean.fornecedor.pessoa.cpf}"
 						placeholder="Informe seu CPF" />
-						
-					<p:outputLabel value="Razão Social " for="razaoSocial" />
+
+					<p:outputLabel value="#{msg['label.razaosocial']}"
+						for="razaoSocial" />
 					<p:inputText id="razaoSocial" required="true"
 						requiredMessage="Razão social deve ser preenchido"
 						value="#{cadastroFornecedorBean.fornecedor.razaoSocial}"
 						placeholder="Informe a razão Social" />
-							
-					
-					<p:outputLabel value="Nome Fantasia " for="nomeFantasia" />
+
+
+					<p:outputLabel value="#{msg['label.nomefantasia']}"
+						for="nomeFantasia" />
 					<p:inputText id="nomeFantasia" required="true"
 						requiredMessage="Nome fantasia deve ser preenchido"
 						value="#{cadastroFornecedorBean.fornecedor.nomeFantasia}"
@@ -66,12 +68,13 @@
 
 			<p:toolbar>
 				<f:facet name="left">
-					<p:commandButton value="Salvar" icon="fa fa-save"
+					<p:commandButton value="#{msg['button.salvar']}" icon="fa fa-save"
 						update="formDataTable formCadastroFornecedor"
 						action="#{cadastroFornecedorBean.salvar}" />
 
-					<p:commandButton value="Limpar" icon="fa fa-eraser" update="@form"
-						process="@this" action="#{cadastroFornecedorBean.limpar}" />
+					<p:commandButton value="#{msg['button.limpar']}"
+						icon="fa fa-eraser" update="@form" process="@this"
+						action="#{cadastroFornecedorBean.limpar}" />
 				</f:facet>
 			</p:toolbar>
 
@@ -111,14 +114,32 @@
 					</div>
 				</f:facet>
 
-				<p:column headerText="Nome" filterBy="#{f.pessoa.nome}"
-					filterMatchMode="contains" sortBy="#{f.pessoa.nome}">
+				<p:column headerText="#{msg['label.nome']}"
+					filterBy="#{f.pessoa.nome}" filterMatchMode="contains"
+					sortBy="#{f.pessoa.nome}">
 					<h:outputText value="#{f.pessoa.nome}" />
 				</p:column>
 
 				<p:column headerText="E-mail" filterBy="#{f.pessoa.email}"
 					filterMatchMode="contains" sortBy="#{f.pessoa.email}">
 					<h:outputText value="#{f.pessoa.email}" />
+				</p:column>
+
+				<p:column headerText="CPF/CNPJ" filterBy="#{f.pessoa.cpf}"
+					filterMatchMode="contains" sortBy="#{f.pessoa.cpf}">
+					<h:outputText value="#{f.pessoa.cpf}" />
+				</p:column>
+
+				<p:column headerText="#{msg['label.razaosocial']}"
+					filterBy="#{f.pessoa.razaoSocial}" filterMatchMode="contains"
+					sortBy="#{f.pessoa.razaoSocial}">
+					<h:outputText value="#{f.razaoSocial}" />
+				</p:column>
+
+				<p:column headerText="#{msg['label.nomefantasia']}"
+					filterBy="#{f.pessoa.nomeFantasia}" filterMatchMode="contains"
+					sortBy="#{f.pessoa.nomeFantasia}">
+					<h:outputText value="#{f.nomeFantasia}" />
 				</p:column>
 
 
@@ -140,17 +161,17 @@
 
 			</p:dataTable>
 
-			<p:confirmDialog id="confirmDialog" header="Atenção!"
+			<p:confirmDialog id="confirmDialog" header="#{msg['header.atencao']}"
 				responsive="true"
-				message="Tem certeza que deseja excluir a pessoa com nome: #{cadastroFornecedorBean.fornecedor.pessoa.nome} ?"
+				message="#{msg['message.excluir']} #{cadastroFornecedorBean.fornecedor.pessoa.nome} ?"
 				widgetVar="confirmDialog" showEffect="fade" hideEffect="fade"
 				closable="false" closeOnEscape="true">
 
-				<p:commandButton value="Sim" icon="fa fa-check" update="@form"
-					action="#{cadastroFornecedorBean.excluir}"
+				<p:commandButton value="#{msg['button.sim']}" icon="fa fa-check"
+					update="@form" action="#{cadastroFornecedorBean.excluir}"
 					oncomplete="PF('confirmDialog').hide()" />
 
-				<p:button value="Não" icon="fa fa-times"
+				<p:button value="#{msg['button.nao']}" icon="fa fa-times"
 					onclick="PF('confirmDialog').hide(); return false;" />
 
 			</p:confirmDialog>

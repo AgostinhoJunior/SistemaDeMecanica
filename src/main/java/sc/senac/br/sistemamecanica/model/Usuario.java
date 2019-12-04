@@ -87,4 +87,10 @@ public class Usuario implements IBaseModel {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "Usuario [codigo=" + codigo + ", nome=" + nome + ", email=" + email + ", senha=" + senha + ", ativo="
+				+ ativo + "]";
+	}
+
 }

@@ -5,14 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.faces.context.FacesContext;
 
 import sc.senac.br.sistemamecanica.dao.IBaseDao;
 import sc.senac.br.sistemamecanica.dao.ServicoDao;
 import sc.senac.br.sistemamecanica.model.Servico;
+import sc.senac.br.sistemamecanica.util.MensagemUtil;
 
 @ManagedBean
 @ViewScoped
@@ -36,24 +35,16 @@ public class CadastroServicoBean implements Serializable {
 		if (servico.getCodigo() == null) {
 			servicoDao.salvar(servico);
 
-			FacesMessage mensagem = new FacesMessage();
-			mensagem.setSeverity(FacesMessage.SEVERITY_INFO);
-			mensagem.setSummary("Servico salvo com sucesso!");
-
-			FacesContext.getCurrentInstance().addMessage(null, mensagem);
+			MensagemUtil.addMensagemInfo("mensagem.cadastrosucesso");
 
 		} else {
 			servicoDao.alterar(servico);
 
-			FacesMessage mensagem = new FacesMessage();
-			mensagem.setSeverity(FacesMessage.SEVERITY_INFO);
-			mensagem.setSummary("Servico alterado com sucesso!");
+			MensagemUtil.addMensagemInfo("mensagem.alteradosucesso");
 
-			FacesContext.getCurrentInstance().addMessage(null, mensagem);
+			limpar();
+			buscar();
 		}
-
-		limpar();
-		buscar();
 	}
 
 	public void excluir() {
@@ -61,11 +52,7 @@ public class CadastroServicoBean implements Serializable {
 		limpar();
 		buscar();
 
-		FacesMessage mensagem = new FacesMessage();
-		mensagem.setSeverity(FacesMessage.SEVERITY_INFO);
-		mensagem.setSummary("Servico excluído com sucesso!");
-
-		FacesContext.getCurrentInstance().addMessage(null, mensagem);
+		MensagemUtil.addMensagemInfo("mensagem.deletadosucesso");
 	}
 
 	public void limpar() {
