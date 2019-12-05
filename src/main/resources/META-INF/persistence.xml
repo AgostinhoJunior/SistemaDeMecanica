@@ -7,11 +7,11 @@
 	<persistence-unit name="MecanicaPU">
 		<properties>
 			<property name="javax.persistence.jdbc.url"
-				value="jdbc:mysql://us-cdbr-iron-east-05.cleardb.net/heroku_5cc5f2b52100145?createDatabaseIfNotExist=true&amp;useTimezone=true&amp;serverTimezone=America/Sao_Paulo" />
+				value="jdbc:mysql://localhost/mecanica?createDatabaseIfNotExist=true&amp;useTimezone=true&amp;serverTimezone=America/Sao_Paulo" />
 			<property name="javax.persistence.jdbc.user"
-				value="bd5237232b7417" />
+				value="root" />
 			<property name="javax.persistence.jdbc.password"
-				value="24873c69" />
+				value="" />
 
 			<property name="javax.persistence.jdbc.driver"
 				value="com.mysql.cj.jdbc.Driver" />

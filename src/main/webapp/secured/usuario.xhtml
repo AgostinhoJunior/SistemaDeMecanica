@@ -76,17 +76,10 @@
 
 		<h:form id="formDataTable">
 
-			<p:dataTable id="table" 
-				var="u" 
-				widgetVar="table" 
-				reflow="true"
-				paginator="true" 
-				rows="5" 
-				lazy="true"
-				paginatorPosition="bottom"
+			<p:dataTable id="table" var="u" widgetVar="table" reflow="true"
+				paginator="true" rows="5" lazy="true" paginatorPosition="bottom"
 				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
-				rowsPerPageTemplate="5,10,15"
-				value="#{cadastroUsuarioBean.model}" 
+				rowsPerPageTemplate="5,10,15" value="#{cadastroUsuarioBean.model}"
 				filteredValue="#{cadastroUsuarioBean.usuariosFiltro}">
 
 				<f:facet name="{Exporters}">
@@ -123,10 +116,6 @@
 					<h:outputText value="#{u.email}" />
 				</p:column>
 
-				<p:column headerText="Senha" filterBy="#{u.senha}"
-					filterMatchMode="contains" sortBy="#{u.senha}">
-					<h:outputText value="#{u.senha}" />
-				</p:column>
 
 				<p:column headerText="Ativo" filterBy="#{u.ativo}"
 					filterMatchMode="contains" sortBy="#{u.ativo}">
